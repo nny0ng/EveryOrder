@@ -14,6 +14,8 @@
             android:theme="@style/Theme.Popup"
             android:screenOrientation="landscape"
             android:exported="true" />
+            android:name=".Start"
+            android:exported="false" />
         <activity
             android:name=".Start"
             android:exported="true"
