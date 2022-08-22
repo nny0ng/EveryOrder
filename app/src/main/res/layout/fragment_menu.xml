@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,80 +11,60 @@
         android:weightSum="1">
 
         <!-- 메뉴 -->
-        <TabHost
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="15dp"
+            android:orientation="vertical"
+            android:weightSum="1"
             android:layout_weight="0.67">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_weight="0.1"
+                app:tabGravity="fill"
+                app:tabMode="fixed"
+                app:tabTextAppearance="@style/tab_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/item1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="돈가스" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/item2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="파스타" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/item3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="리조또" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/item4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="음료" />
+
+            </com.google.android.material.tabs.TabLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="1"
-                android:orientation="vertical"
-                android:background="@drawable/outline_gray">
-
-                <TabWidget
-                    android:id="@android:id/tabs"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.1">
-                </TabWidget>
+                android:layout_height="0dp"
+                android:layout_weight= "0.9">
 
                 <FrameLayout
-                    android:id="@android:id/tabcontent"
+                    android:id="@+id/tab_container"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.9">
-
-                    <!-- 돈가스 -->
-                    <LinearLayout
-                        android:id="@+id/content1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rv_menu"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
-                    </LinearLayout>
-
-                    <!-- 파스타 -->
-                    <LinearLayout
-                        android:id="@+id/content2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
-                    </LinearLayout>
-
-                    <!-- 리조또 -->
-                    <LinearLayout
-                        android:id="@+id/content3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
-                    </LinearLayout>
-
-                    <!-- 음료 -->
-                    <LinearLayout
-                        android:id="@+id/content4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
-                    </LinearLayout>
-                </FrameLayout>
+                    android:layout_height="match_parent"></FrameLayout>
             </LinearLayout>
-
-        </TabHost>
+        </LinearLayout>
 
         <!-- 공백 -->
         <View

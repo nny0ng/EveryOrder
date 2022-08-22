@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class Adapter_recycler_menu extends RecyclerView.Adapter<Adapter_recycler_menu.ViewHolder> {
 
-    private ArrayList<MenuItem> Menulist;
+    private ArrayList<MenuItem> Menulist = new ArrayList<>();
 
     @NonNull
     @Override

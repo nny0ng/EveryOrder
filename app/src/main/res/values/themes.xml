@@ -21,4 +21,8 @@
         <!-- 타이틀바 없애기 -->
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="tab_text" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
+        <item name="android:textSize">25dp</item>
+    </style>
 </resources>
