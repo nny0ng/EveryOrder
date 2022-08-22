@@ -13,7 +13,7 @@
             android:name=".Start"
             android:exported="false" />
         <activity
-            android:name=".Ordrer"
+            android:name=".Order"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
