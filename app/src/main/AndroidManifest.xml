@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kiosk">
         <activity
+            android:name=".Start"
+            android:exported="false" />
+        <activity
             android:name=".Ordrer"
             android:exported="false" />
         <activity
