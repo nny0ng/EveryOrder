@@ -64,7 +64,8 @@
             android:layout_weight="0.94"
             android:layout_margin="15dp"
             android:weightSum="3"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/outline_gray">
 
             <!-- 품목 -->
             <LinearLayout
