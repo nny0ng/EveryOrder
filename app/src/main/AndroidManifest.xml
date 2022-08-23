@@ -9,13 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kiosk">
+        <service
+            android:name=".V_main"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".PopupFinish"
-            android:theme="@style/Theme.Popup"
+            android:exported="true"
             android:screenOrientation="landscape"
-            android:exported="true" />
-            android:name=".Start"
-            android:exported="false" />
+            android:theme="@style/Theme.Popup" />
         <activity
             android:name=".Start"
             android:exported="true"
@@ -33,7 +36,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

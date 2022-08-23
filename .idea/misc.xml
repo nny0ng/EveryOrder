@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1575" />
+        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/activity_order.xml" value="0.1" />
+        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/activity_popup_finish.xml" value="0.1" />
+        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/activity_start.xml" value="0.1" />
+        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/fragment_menu.xml" value="0.1" />
+        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/fragment_order.xml" value="0.1" />
+        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/fragment_tab1.xml" value="0.1" />
+        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/fragment_tab2.xml" value="0.1" />
+        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/fragment_tab3.xml" value="0.1" />
+        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/fragment_tab4.xml" value="0.1" />
         <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/drawable/btn_circle.xml" value="0.28671875" />
         <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/drawable/outline_gray.xml" value="0.20234375" />
         <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/activity_main.xml" value="0.2" />
