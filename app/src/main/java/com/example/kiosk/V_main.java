@@ -20,7 +20,6 @@ public class V_main extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
             @Override
             public void onInit(int status){
@@ -33,7 +32,6 @@ public class V_main extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
         if(intent == null){
             return Service.START_STICKY;
         }else{
@@ -44,8 +42,7 @@ public class V_main extends Service {
 
     private void processCommand(Intent intent, int flags, int startId){
         //tts로 설명문구 : label1
-
-        tts.speak("hi", TextToSpeech.QUEUE_FLUSH, null);
+        tts.speak("메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH, null);
     }
 
     @Override

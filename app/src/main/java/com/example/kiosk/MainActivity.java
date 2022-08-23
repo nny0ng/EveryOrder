@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.layout_frame, fragment_menu).commitAllowingStateLoss();
+
+        //V_main 서비스 호출
+        Intent intent = new Intent(getApplicationContext(), V_main.class);
+        intent.putExtra("command", "hi");
+        startService(intent);
     }
 
     public void clickHandler(View view)
