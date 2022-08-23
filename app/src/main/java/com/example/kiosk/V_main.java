@@ -20,6 +20,15 @@ public class V_main extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
+            @Override
+            public void onInit(int status){
+                if(status != ERROR){
+                    tts.setLanguage(Locale.KOREAN);
+                }
+            }
+        });
     }
 
     @Override
@@ -35,14 +44,7 @@ public class V_main extends Service {
 
     private void processCommand(Intent intent, int flags, int startId){
         //tts로 설명문구 : label1
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
-            @Override
-            public void onInit(int status){
-                if(status != ERROR){
-                    tts.setLanguage(Locale.KOREAN);
-                }
-            }
-        });
+
         tts.speak("hi", TextToSpeech.QUEUE_FLUSH, null);
     }
 
