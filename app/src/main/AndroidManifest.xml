@@ -10,13 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kiosk">
         <activity
+            android:name=".PopupFinish"
+            android:theme="@style/Theme.Popup"
+            android:screenOrientation="landscape"
+            android:exported="true" />
             android:name=".Start"
             android:exported="false" />
         <activity
-            android:name=".Ordrer"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".Start"
             android:exported="true"
             android:screenOrientation="landscape">
             <intent-filter>
@@ -25,6 +26,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Order"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

@@ -11,6 +11,18 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!-- 타이틀바 없애기 -->
+        <item name="windowNoTitle">true</item>
+        <!-- 상단바 없애기 -->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Theme.Popup" parent="Theme.AppCompat.DayNight.Dialog">
+        <!-- 타이틀바 없애기 -->
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="tab_text" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
+        <item name="android:textSize">25dp</item>
     </style>
 </resources>

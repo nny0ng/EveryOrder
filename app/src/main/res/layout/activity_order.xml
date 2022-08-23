@@ -21,11 +21,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
+            android:layout_marginLeft="70dp"
             android:text="디아루가 식당"
             android:textColor="@color/black"
             android:textSize="60dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="70dp"></TextView>
+            android:textStyle="bold"></TextView>
 
         <View
             android:layout_width="0dp"
@@ -33,25 +33,16 @@
             android:layout_weight="1"></View>
 
         <Button
-            android:layout_width="80dp"
+            android:layout_width="250dp"
             android:layout_height="70dp"
             android:layout_gravity="center|right"
-            android:background="@drawable/btn_circle"
-            android:text="호출"
-            android:textSize="25dp"
+            android:text="초기화면으로 돌아가기"
+            android:textSize="20dp"
             android:layout_marginRight="60dp">
 
         </Button>
 
     </LinearLayout>
-
-    <!-- 상단 라인 제외 나머지 메뉴, 장바구니 있는 라인-->
-    <FrameLayout
-        android:id="@+id/layout_frame"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.8">
-    </FrameLayout>
 
 
     <View
