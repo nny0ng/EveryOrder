@@ -21,8 +21,8 @@ public class Fragment_tab2 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tab1, container, false);
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.rv_tab1);
+        View view = inflater.inflate(R.layout.fragment_tab2, container, false);
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.rv_tab2);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
 
