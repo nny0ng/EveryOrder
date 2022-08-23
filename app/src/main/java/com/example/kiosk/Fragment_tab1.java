@@ -17,6 +17,7 @@ import java.util.List;
 public class Fragment_tab1 extends Fragment {
 
     private Adapter_recycler_menu adapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,9 +33,10 @@ public class Fragment_tab1 extends Fragment {
         return view;
     }
 
+    // 돈가스
     private void getData() {
         List<String> listname = Arrays.asList("돈가스", "치즈돈가스", "로제돈가스", "고구마치즈돈가스");
-        List<String> listprice = Arrays.asList("6,900", "7,900", "9,900", "8,900");
+        List<String> listprice = Arrays.asList("6,900원", "7,900원", "9,900원", "8,900원");
         List<Integer> listResId = Arrays.asList(
                 R.drawable.pork,
                 R.drawable.cheesepork,
