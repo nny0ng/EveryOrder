@@ -1,13 +1,16 @@
 package com.example.kiosk;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.view.menu.MenuAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -21,14 +24,17 @@ public class MainActivity extends AppCompatActivity {
     private Fragment_Order fragment_order;
     private FragmentTransaction fragmentTransaction;
 
+    final int PERMISSION = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //V_main 서비스 호출
-        Intent intent = new Intent(getApplicationContext(), V_main.class);
-        startService(intent);
+        if(Build.VERSION.SDK_INT >= 23){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET,
+                    Manifest.permission.RECORD_AUDIO}, PERMISSION);
+        }
 
         fragmentManager = getSupportFragmentManager();
         fragment_menu = new Fragment_Menu();
@@ -39,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         //V_main 서비스 호출
         Intent intent = new Intent(getApplicationContext(), V_main.class);
-        intent.putExtra("command", "hi");
+        intent.putExtra("context", "hi");
         startService(intent);
     }
 

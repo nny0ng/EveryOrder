@@ -10,6 +10,7 @@ import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.widget.Toast;
 
 import static android.speech.tts.TextToSpeech.ERROR;
@@ -24,7 +25,6 @@ import java.util.Locale;
 public class V_main extends Service {
 
     private TextToSpeech tts;
-    final int PERMISSION = 1;
     Intent sttIntent;
     SpeechRecognizer mRecognizer;
 
@@ -42,27 +42,6 @@ public class V_main extends Service {
                 }
             }
         });
-
-        /*if(Build.VERSION.SDK_INT >= 23){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET,
-            Manifest.permission.RECORD_AUDIO}, PERMISSION);
-        }*/
-
-        sttIntent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
-        sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
-
-        /*sttBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mRecognizer= SpeechRecognizer.createSpeechRecognizer(V_main.this);
-                mRecognizer.setRecognitionListener(listener);
-                mRecognizer.startListening(sttIntent);
-            }
-        });*/
-
-        mRecognizer= SpeechRecognizer.createSpeechRecognizer(V_main.this);
-        mRecognizer.startListening(sttIntent);
     }
 
     @Override
@@ -70,19 +49,31 @@ public class V_main extends Service {
         if(intent == null){
             return Service.START_STICKY;
         }else{
-            processCommand(intent, flags, startId);
+            // tts: label 1
+            tts.speak("메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH, null);
+
+            sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
+            sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
+
+            mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_main.this);
+            mRecognizer.setRecognitionListener(listener);
+
+            // STT 시작
+            mRecognizer.startListening(sttIntent);
         }
         return super.onStartCommand(intent, flags, startId);
-    }
-
-    private void processCommand(Intent intent, int flags, int startId){
-        //tts로 설명문구 : label1
-        tts.speak("메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH, null);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        // TTS 객체가 남아있다면 실행을 중지하고 메모리에서 제거한다.
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
     }
 
     @Override
@@ -94,17 +85,14 @@ public class V_main extends Service {
     private RecognitionListener listener = new RecognitionListener() {
         @Override
         public void onPartialResults(Bundle bundle) {
-
         }
 
         @Override
         public void onEvent(int i, Bundle bundle) {
-
         }
 
         @Override
         public void onReadyForSpeech(Bundle params) {
-            //Toast.makeText(getApplicationContext(),"음성인식을 시작합니다.",Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -159,18 +147,17 @@ public class V_main extends Service {
                     message = "알 수 없는 오류임";
                     break;
             }
-
-            //Toast.makeText(getApplicationContext(), "에러가 발생하였습니다. : " + message, Toast.LENGTH_SHORT).show();
+            tts.speak(message, TextToSpeech.QUEUE_FLUSH, null);
         }
 
         @Override
         public void onResults(Bundle results) {
             ArrayList<String> matches =
                     results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-
+            Log.d("STT", String.valueOf(matches));
             tts.speak(matches.toString(), TextToSpeech.QUEUE_FLUSH, null);
-            //FuncVoiceOrderCheck(rs[0]);
-            mRecognizer.startListening(sttIntent);
+            // 무한 반복
+            //mRecognizer.startListening(sttIntent);
         }
     };
 }
