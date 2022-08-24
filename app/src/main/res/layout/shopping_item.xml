@@ -1,86 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    android:orientation="horizontal"
+    android:layout_height="150dp"
+    android:orientation="vertical"
     android:layout_marginTop="20dp"
     android:layout_marginBottom="10dp"
     android:layout_marginRight="20dp"
     android:layout_marginLeft="20dp"
-    android:weightSum="1"
-    android:background="@drawable/outline_gray">
+    android:weightSum="1">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
         android:weightSum="1"
-        android:layout_weight="0.5">
+        android:layout_weight="0.3">
 
-        <TextView
-            android:id="@+id/tv_shopping_name"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.6"
-            android:text="음식 이름"
-            android:textSize="25dp"
-            android:gravity="bottom"
-            android:paddingLeft="5dp"
-            android:fontFamily="@font/cafe">
-        </TextView>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"></View>
 
-        <TextView
-            android:id="@+id/tv_shopping_price"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.4"
-            android:text="1000원"
-            android:textSize="20dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="5dp"
-            android:fontFamily="@font/cafe">
-        </TextView>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_baseline_cancel_presentation_24"></Button>
+        </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        android:layout_weight="0.5">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:background="@drawable/outline_gray">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/btn_minus"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/ic_baseline_indeterminate_check_box_70">
-            </Button>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center">
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:layout_weight="0.5">
 
             <TextView
-                android:id="@+id/tv_shopping_num"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="1개"
+                android:id="@+id/tv_shopping_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6"
+                android:text="음식 이름"
                 android:textSize="25dp"
+                android:gravity="bottom"
+                android:paddingLeft="5dp"
+                android:fontFamily="@font/cafe">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_shopping_price"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.4"
+                android:text="1000원"
+                android:textSize="20dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
                 android:fontFamily="@font/cafe">
             </TextView>
 
@@ -89,20 +77,62 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center">
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_weight="0.5">
 
-            <Button
-                android:id="@+id/btn_plus"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/ic_baseline_add_box_70">
-            </Button>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_minus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/ic_baseline_indeterminate_check_box_70">
+                </Button>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_shopping_num"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="1개"
+                    android:textSize="25dp"
+                    android:fontFamily="@font/cafe">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btn_plus"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/ic_baseline_add_box_70">
+                </Button>
+            </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>

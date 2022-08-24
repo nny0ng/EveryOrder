@@ -33,7 +33,9 @@ public class Fragment_Order extends Fragment {
         for(int i = 0; i < orderList.size(); i++){
             adapter.addItem(orderList.get(i));
             int price = Integer.parseInt(orderList.get(i).getPrice().substring(0, orderList.get(i).getPrice().indexOf("원")));
-            sum += price;
+            int num = Integer.parseInt(orderList.get(i).getNum().substring(0, orderList.get(i).getNum().indexOf("개")));
+
+            sum += (price * num);
         }
 
         TextView sum_total = (TextView)view.findViewById(R.id.tv_total_price);
