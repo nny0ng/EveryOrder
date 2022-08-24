@@ -94,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
                 serviceIntent  = new Intent(getApplicationContext(), V_menu.class);
                 startService(serviceIntent);
             }
+            else if (Service.equals("ORDER")) {
+                serviceIntent  = new Intent(getApplicationContext(), V_order.class);
+                startService(serviceIntent);
+            }
             else if (Service.equals("CALL")) {
                 serviceIntent  = new Intent(getApplicationContext(), V_call.class);
                 startService(serviceIntent);

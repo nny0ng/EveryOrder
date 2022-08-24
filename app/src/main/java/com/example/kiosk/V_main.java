@@ -98,6 +98,7 @@ public class V_main extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    // listener: label 1
     private Listener listener = new Listener() {
         @Override
         public void onResults(Bundle results) {
@@ -121,7 +122,7 @@ public class V_main extends Service {
                 stopSelf();
             }
             else if (matches.contains("주문")) {
-                intent = new Intent(getApplicationContext(), Order.class);
+                intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "ORDER");
                 startActivity(intent);

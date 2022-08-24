@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class V_order extends Service {
+    // listener: label 3
+    // cartListener: 무엇을 추가/삭제 하시겠습니까?
+    // checkListener: ~ n개를 장바구니에 추가할까요?
+    // completeListener: (장바구니 전체)를 주문하시겠습니까?
 
     public TextToSpeech tts;
     Intent sttIntent;
@@ -44,6 +48,7 @@ public class V_order extends Service {
         int result;
         result = tts.speak("현재 장바구니에는 '제'가 있습니다. 추가를 원하시면 추가, 삭제를 원하시면 삭제, 주문 확정을 원하시면 확정 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH, null);
         Log.d("TTS state", String.valueOf(result));
+
         try {
             Thread.sleep(9500); // 초 계산하기
         } catch (InterruptedException e) {
@@ -96,27 +101,18 @@ public class V_order extends Service {
             mRecognizer.setRecognitionListener(cartListener);
 
             if (matches.contains("추가")) {
+                cartListener.tmp ="추가";
                 tts.speak("무엇을 추가하시겠습니까?", TextToSpeech.QUEUE_FLUSH, null);
                 mRecognizer.startListening(sttIntent);
-                intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Service", "MENU");
-                startActivity(intent);
-                stopSelf();
             } else if (matches.contains("삭제")) {
-                tts.speak("리조또 메뉴들", TextToSpeech.QUEUE_FLUSH, null);
-                intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Service", "MENU");
-                startActivity(intent);
-                stopSelf();
+                cartListener.tmp ="삭제";
+                tts.speak("무엇을 삭제하시겠습니까?", TextToSpeech.QUEUE_FLUSH, null);
+                mRecognizer.startListening(sttIntent);
             } else if (matches.contains("확정")) {
-                tts.speak("파스타 메뉴들", TextToSpeech.QUEUE_FLUSH, null);
-                intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Service", "MENU");
-                startActivity(intent);
-                stopSelf();
+                mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_order.this);
+                mRecognizer.setRecognitionListener(completeListener);
+                tts.speak("(장바구니 전체)를 주문하시겠습니까?", TextToSpeech.QUEUE_FLUSH, null);
+                mRecognizer.startListening(sttIntent);
             } else {
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -132,44 +128,70 @@ public class V_order extends Service {
         public void onResults(Bundle results) {
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             Log.d("STT", String.valueOf(matches));
-            cart(matches.toString());
+            addToCart(matches.toString()); // 단어 분류 함수
             // STT data to TTS
             //tts.speak(matches.toString(), TextToSpeech.QUEUE_FLUSH, null);
         }
 
-        public void cart(String matches) {
-            Intent intent;
+        private void addToCart(String matches) {
+            // 문장 인식하고 단어, 수량 파악해서
             mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_order.this);
-            mRecognizer.setRecognitionListener(cartListener);
+            mRecognizer.setRecognitionListener(checkListener);
+            tts.speak("~ 1개를 장바구니에 "+ tmp +"할까요?", TextToSpeech.QUEUE_FLUSH, null);
+            mRecognizer.startListening(sttIntent);
+        }
+    };
 
-            if (matches.contains("추가")) {
-                tts.speak("무엇을 추가하시겠습니까?", TextToSpeech.QUEUE_FLUSH, null);
-                mRecognizer.startListening(sttIntent);
+    private Listener checkListener = new Listener() {
+        @Override
+        public void onResults(Bundle results) {
+            Intent intent;
+            ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            Log.d("STT", String.valueOf(matches));
+
+            if (matches.toString().contains("네")) { // 후보지 나중에 추가
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Service", "MENU");
+                intent.putExtra("Service", "ORDER");
                 startActivity(intent);
                 stopSelf();
-            } else if (matches.contains("삭제")) {
-                tts.speak("리조또 메뉴들", TextToSpeech.QUEUE_FLUSH, null);
-                intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Service", "MENU");
-                startActivity(intent);
-                stopSelf();
-            } else if (matches.contains("확정")) {
-                tts.speak("파스타 메뉴들", TextToSpeech.QUEUE_FLUSH, null);
-                intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Service", "MENU");
-                startActivity(intent);
-                stopSelf();
-            } else {
+            }
+            else if (matches.toString().contains("아니요")) { // 후보지 나중에 추가
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MAIN");
                 startActivity(intent);
                 stopSelf();
+            }
+            // STT data to TTS
+            //tts.speak(matches.toString(), TextToSpeech.QUEUE_FLUSH, null);
+        }
+    };
+
+    private Listener completeListener = new Listener() {
+        @Override
+        public void onResults(Bundle results) {
+            Intent intent;
+            ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            Log.d("STT", String.valueOf(matches));
+
+            if (matches.toString().contains("네")) { // 후보지 나중에 추가
+                tts.speak("주문이 완료되었습니다 조금만 기다려주세요!", TextToSpeech.QUEUE_FLUSH, null);
+                intent = new Intent(getApplicationContext(), Start.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                stopSelf();
+            }
+            else if (matches.toString().contains("아니요")) { // 후보지 나중에 추가
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Service", "MAIN");
+                startActivity(intent);
+                stopSelf();
+            }
+            else {
+                tts.speak("인식에 실패했습니다", TextToSpeech.QUEUE_FLUSH, null);
+                mRecognizer.startListening(sttIntent);
             }
         }
     };
