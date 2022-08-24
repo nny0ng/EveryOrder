@@ -10,12 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kiosk">
         <activity
-            android:name=".PopupFinish"
-            android:theme="@style/Theme.Popup"
+            android:name=".PopupFinishcall"
             android:screenOrientation="landscape"
-            android:exported="true" />
-            android:name=".Start"
+            android:theme="@style/Theme.Popup"
             android:exported="false" />
+        <activity
+            android:name=".PopupCall"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Popup"
+            android:exported="false" />
+        <activity
+            android:name=".PopupFinish"
+            android:exported="true"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Popup" />
         <activity
             android:name=".Start"
             android:exported="true"
@@ -33,7 +41,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

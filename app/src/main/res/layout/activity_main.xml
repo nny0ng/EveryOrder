@@ -29,17 +29,18 @@
 
         <View
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"></View>
 
         <Button
+            android:id="@+id/btn_call"
             android:layout_width="80dp"
             android:layout_height="70dp"
             android:layout_gravity="center|right"
+            android:layout_marginRight="60dp"
             android:background="@drawable/btn_circle"
             android:text="호출"
-            android:textSize="25dp"
-            android:layout_marginRight="60dp">
+            android:textSize="25dp">
 
         </Button>
 

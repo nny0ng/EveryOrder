@@ -4,13 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/drawable/btn_circle.xml" value="0.2415" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/drawable/btn_circle_red.xml" value="0.2255" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/drawable/outline_gray.xml" value="0.2415" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_main.xml" value="0.11200000000000002" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_order.xml" value="0.128" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_ordrer.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_popup_call.xml" value="0.10024752475247525" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_popup_finish.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_popup_finishcall.xml" value="0.10024752475247525" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_start.xml" value="0.11770833333333333" />
-        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_menu.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_menu.xml" value="0.128" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_order.xml" value="0.128" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_tab1.xml" value="0.1" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_tab2.xml" value="0.1" />
         <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_tab3.xml" value="0.1" />
