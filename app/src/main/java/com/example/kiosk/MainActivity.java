@@ -26,10 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //V_main 서비스 호출
-        Intent intent = new Intent(getApplicationContext(), V_main.class);
-        startService(intent);
-
         fragmentManager = getSupportFragmentManager();
         fragment_menu = new Fragment_Menu();
         fragment_order = new Fragment_Order();
