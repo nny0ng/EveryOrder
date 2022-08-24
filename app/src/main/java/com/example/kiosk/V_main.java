@@ -24,7 +24,7 @@ import java.util.Locale;
 
 public class V_main extends Service {
 
-    private TextToSpeech tts;
+    public TextToSpeech tts;
     Intent sttIntent;
     SpeechRecognizer mRecognizer;
 
@@ -51,7 +51,21 @@ public class V_main extends Service {
             return Service.START_STICKY;
         }else{
             // tts: label 1
+            int result;
+            result = tts.speak("해당 프로그램은 터치+음성입니다. 터치하면 메뉴가 추가되니 주의해주세요", TextToSpeech.QUEUE_FLUSH, null);
+            Log.d("TTS state", String.valueOf(result));//tts.playSilence(2000, TextToSpeech.QUEUE_ADD, null);
+            try {
+                Thread.sleep(7000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             tts.speak("메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH, null);
+            try {
+                Thread.sleep(7100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             // STT 설정
             sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -62,7 +76,7 @@ public class V_main extends Service {
             mRecognizer.setRecognitionListener(listener);
 
             // STT 시작
-            mRecognizer.startListening(sttIntent);
+            if (!tts.isSpeaking()) mRecognizer.startListening(sttIntent);
         }
         return super.onStartCommand(intent, flags, startId);
     }
@@ -71,7 +85,7 @@ public class V_main extends Service {
     public void onDestroy() {
         super.onDestroy();
         // TTS 객체가 남아있다면 실행을 중지하고 메모리에서 제거
-        if(tts != null){
+        if(tts != null) {
             tts.stop();
             tts.shutdown();
             tts = null;
@@ -84,83 +98,46 @@ public class V_main extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    private RecognitionListener listener = new RecognitionListener() {
-        @Override
-        public void onPartialResults(Bundle bundle) {
-        }
-
-        @Override
-        public void onEvent(int i, Bundle bundle) {
-        }
-
-        @Override
-        public void onReadyForSpeech(Bundle params) {
-        }
-
-        @Override
-        public void onBeginningOfSpeech() {
-        }
-
-        @Override
-        public void onRmsChanged(float rmsdB) {
-        }
-
-        @Override
-        public void onBufferReceived(byte[] buffer) {
-        }
-
-        @Override
-        public void onEndOfSpeech() {
-        }
-
-        @Override
-        public void onError(int error) {
-            String message;
-            switch (error) {
-                case SpeechRecognizer.ERROR_AUDIO:
-                    message = "오디오 에러";
-                    break;
-                case SpeechRecognizer.ERROR_CLIENT:
-                    message = "클라이언트 에러";
-                    break;
-                case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
-                    message = "퍼미션 없음";
-                    break;
-                case SpeechRecognizer.ERROR_NETWORK:
-                    message = "네트워크 에러";
-                    break;
-                case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
-                    message = "네트웍 타임아웃";
-                    break;
-                case SpeechRecognizer.ERROR_NO_MATCH:
-                    message = "찾을 수 없음";
-                    break;
-                case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
-                    message = "RECOGNIZER가 바쁨";
-                    break;
-                case SpeechRecognizer.ERROR_SERVER:
-                    message = "서버가 이상함";
-                    break;
-                case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-                    message = "말하는 시간초과";
-                    break;
-                default:
-                    message = "알 수 없는 오류임";
-                    break;
-            }
-            tts.speak(message, TextToSpeech.QUEUE_FLUSH, null);
-        }
-
+    private Listener listener = new Listener() {
         @Override
         public void onResults(Bundle results) {
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-            Log.d("STT", String.valueOf(matches));
+            Log.d("main STT", String.valueOf(matches));
+
+            changeService(matches.toString());
 
             // STT data to TTS
-            tts.speak(matches.toString(), TextToSpeech.QUEUE_FLUSH, null);
+            //tts.speak(matches.toString(), TextToSpeech.QUEUE_FLUSH, null);
+        }
 
-            // 무한 반복
-            //mRecognizer.startListening(sttIntent);
+        public void changeService(String matches) {
+            Intent intent;
+            if (matches.contains("메뉴")) {
+                Log.d("change service menu", String.valueOf(matches));
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Service", "MENU");
+                startActivity(intent);
+                stopSelf();
+            }
+            else if (matches.contains("주문")) {
+                intent = new Intent(getApplicationContext(), Order.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Service", "ORDER");
+                startActivity(intent);
+                stopSelf();
+            }
+            else if (matches.contains("호출")) {
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Service", "CALL");
+                startActivity(intent);
+                stopSelf();
+            }
+            else {
+                // 무한 반복
+                mRecognizer.startListening(sttIntent);
+            }
         }
     };
 }
