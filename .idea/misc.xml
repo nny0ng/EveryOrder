@@ -3,25 +3,32 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/drawable/btn_circle.xml" value="0.2415" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/drawable/btn_circle_red.xml" value="0.2255" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/drawable/outline_gray.xml" value="0.2415" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/font/font.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_main.xml" value="0.144" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_order.xml" value="0.128" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_ordrer.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_popup_call.xml" value="0.10024752475247525" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_popup_finish.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_popup_finishcall.xml" value="0.10024752475247525" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_start.xml" value="0.11770833333333333" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_menu.xml" value="0.128" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_order.xml" value="0.128" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_tab1.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_tab2.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_tab3.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_tab4.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/index.xml" value="0.1" />
+        <entry key="..\:/Users/julia/AndroidStudioProjects/Diaruga/app/src/main/res/layout/menu_item.xml" value="0.1" />
         <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/drawable/btn_circle.xml" value="0.28671875" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/drawable/outline_gray.xml" value="0.20234375" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/activity_order.xml" value="0.148828125" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/activity_ordrer.xml" value="0.16328125" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/activity_popup_finish.xml" value="0.190234375" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/activity_start.xml" value="0.4" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/fragment_menu.xml" value="0.22" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/fragment_order.xml" value="0.2" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/fragment_tab1.xml" value="0.26781798245614036" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/fragment_tab2.xml" value="0.26781798245614036" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/fragment_tab3.xml" value="0.26781798245614036" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/fragment_tab4.xml" value="0.165234375" />
+        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/index.xml" value="0.262890625" />
-        <entry key="..\:/Users/sunho9889/AndroidStudioProjects/kiosk/app/src/main/res/layout/menu_item.xml" value="0.178515625" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
