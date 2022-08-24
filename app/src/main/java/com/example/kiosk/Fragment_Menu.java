@@ -9,12 +9,16 @@ import android.widget.TabHost;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
 public class Fragment_Menu extends Fragment {
+    public static Adapter_recycler_shopping adapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,6 +65,12 @@ public class Fragment_Menu extends Fragment {
             }
         });
 
+        RecyclerView rv_shopping = view.findViewById(R.id.rv_shopping);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        rv_shopping.setLayoutManager(linearLayoutManager);
+
+        adapter = new Adapter_recycler_shopping();
+        rv_shopping.setAdapter(adapter);
 
         return view;
     }
