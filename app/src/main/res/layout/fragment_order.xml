@@ -62,9 +62,32 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_order"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.7"></androidx.recyclerview.widget.RecyclerView>
+                android:layout_weight="0.6"></androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:weightSum="3"
+                android:layout_weight="0.1">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"></View>
+
+                <TextView
+                    android:id="@+id/tv_total_price"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cafe"
+                    android:gravity="center"
+                    android:text="총 가격"
+                    android:textSize="35dp"
+                    android:textStyle="bold"></TextView>
+            </LinearLayout>
 
             <!-- 뒤로가기, 주문확정 버튼 -->
             <LinearLayout

@@ -72,6 +72,7 @@ public class Fragment_Menu extends Fragment {
         adapter = new Adapter_recycler_shopping();
         rv_shopping.setAdapter(adapter);
 
+
         return view;
     }
 }

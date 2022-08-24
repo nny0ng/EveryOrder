@@ -36,7 +36,7 @@ public class Fragment_tab4 extends Fragment {
     // 음료
     private void getData() {
         List<String> listname = Arrays.asList("사이다", "콜라", "자몽에이드");
-        List<String> listprice = Arrays.asList("2,000원", "2,000원", "4,000원");
+        List<String> listprice = Arrays.asList("2000원", "2000원", "4000원");
         List<Integer> listResId = Arrays.asList(
                 R.drawable.cider,
                 R.drawable.cola,
