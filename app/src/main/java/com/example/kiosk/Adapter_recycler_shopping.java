@@ -58,7 +58,7 @@ public class Adapter_recycler_shopping extends RecyclerView.Adapter<Adapter_recy
         void onBind(ShoppingItem item) {
             name.setText(item.getName());
             price.setText(item.getPrice());
-            num.setText("1개");
+            num.setText(item.getNum());
         }
     }
 }
