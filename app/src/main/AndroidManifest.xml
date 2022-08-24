@@ -30,6 +30,16 @@
             android:exported="true" />
 
         <activity
+            android:name=".PopupFinishcall"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Popup"
+            android:exported="false" />
+        <activity
+            android:name=".PopupCall"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Popup"
+            android:exported="false" />
+        <activity
             android:name=".PopupFinish"
             android:exported="true"
             android:screenOrientation="landscape"
@@ -44,10 +54,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Order"
-            android:exported="false"
-            android:screenOrientation="landscape" />
         <activity
             android:name=".MainActivity"
             android:exported="false"

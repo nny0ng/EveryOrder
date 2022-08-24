@@ -45,6 +45,7 @@ public class V_menu extends Service {
         int result;
         result = tts.speak("돈가스, 리조또, 파스타, 음료 중 원하는 분류를 말해주세요 주문을 원하시면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH, null);
         Log.d("TTS state", String.valueOf(result));
+
         try {
             Thread.sleep(9500);
         } catch (InterruptedException e) {
@@ -81,6 +82,7 @@ public class V_menu extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    // listener: label 2
     private Listener listener = new Listener(){
         @Override
         public void onResults(Bundle results) {
@@ -128,7 +130,7 @@ public class V_menu extends Service {
                 stopSelf();
             }
             else if (matches.contains("주문")) {
-                intent = new Intent(getApplicationContext(), Order.class);
+                intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "ORDER");
                 startActivity(intent);

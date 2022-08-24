@@ -7,6 +7,13 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 
 public abstract class Listener implements RecognitionListener {
+
+    public static String tmp = "";
+
+    public Listener(){
+        tmp = "";
+    }
+
     @Override
     public void onPartialResults(Bundle bundle) {
         // 부분 인식 결과를 사용할 수 있을 때 호출출

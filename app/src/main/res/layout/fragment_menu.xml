@@ -17,7 +17,7 @@
             android:layout_margin="15dp"
             android:orientation="vertical"
             android:weightSum="1"
-            android:layout_weight="0.67">
+            android:layout_weight="0.58">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
@@ -70,14 +70,14 @@
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.03">
+            android:layout_weight="0.02">
         </View>
 
         <!-- 장바구니 -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="0.4"
             android:layout_margin="15dp"
             android:weightSum="1"
             android:orientation="vertical"
@@ -93,10 +93,10 @@
                 android:textSize="30dp"></TextView>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_shopping"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.75">
-            </androidx.recyclerview.widget.RecyclerView>
+                android:layout_weight="0.75"></androidx.recyclerview.widget.RecyclerView>
 
             <LinearLayout
                 android:layout_width="match_parent"
