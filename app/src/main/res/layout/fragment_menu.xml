@@ -90,7 +90,8 @@
                 android:gravity="center"
                 android:text="- 장바구니 -"
                 android:textStyle="bold"
-                android:textSize="30dp"></TextView>
+                android:textSize="30dp"
+                android:fontFamily="@font/cafe"></TextView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_shopping"
@@ -112,7 +113,8 @@
                     android:text="주문하기"
                     android:textStyle="bold"
                     android:textSize="30dp"
-                    android:onClick="clickHandler">
+                    android:onClick="clickHandler"
+                    android:fontFamily="@font/cafe">
                 </Button>
 
             </LinearLayout>

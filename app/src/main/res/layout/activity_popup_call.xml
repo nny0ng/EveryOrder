@@ -4,7 +4,8 @@
     android:layout_height="500dp"
     android:layout_gravity="center"
     android:weightSum="1.3"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#00FF0000">
 
     <View
         android:layout_width="match_parent"
@@ -28,25 +29,25 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
-            android:background="@drawable/btn_circle_red"
+            android:background="@drawable/btn_outline_red"
             android:text="직원호출"
             android:textSize="50dp"
-            android:textStyle="bold"/>
+            android:fontFamily="@font/cafe"/>
 
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.2"/>
+            android:layout_weight="0.15"/>
 
         <Button
             android:id="@+id/btn_waterpaper"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
-            android:background="@drawable/btn_circle"
+            android:background="@drawable/btn_outline_gray"
             android:text="물티슈"
             android:textSize="50dp"
-            android:textStyle="bold"/>
+            android:fontFamily="@font/cafe"/>
 
         <View
             android:layout_width="0dp"
@@ -75,37 +76,38 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
-            android:background="@drawable/btn_circle"
+            android:background="@drawable/btn_outline_gray"
             android:text="물"
             android:textSize="50dp"
-            android:textStyle="bold"/>
+            android:fontFamily="@font/cafe"/>
 
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.2"/>
+            android:layout_weight="0.15"/>
 
         <Button
             android:id="@+id/btn_dish"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
-            android:background="@drawable/btn_circle"
+            android:background="@drawable/btn_outline_gray"
             android:text="앞접시"
             android:textSize="50dp"
-            android:textStyle="bold"/>
+            android:fontFamily="@font/cafe"/>
 
         <Button
             android:id="@+id/btn_back"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.2"
+            android:layout_weight="0.25"
             android:background="#00FF0000"
             android:text="뒤로가기"
             android:textSize="40dp"
             android:textStyle="bold"
-            android:gravity="right|bottom"
-            android:paddingRight="35dp"/>
+            android:paddingRight="80dp"
+            android:gravity="bottom|right"
+            android:fontFamily="@font/cafe"/>
 
     </LinearLayout>
 

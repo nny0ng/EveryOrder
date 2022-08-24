@@ -25,7 +25,8 @@
             android:text="음식 이름"
             android:textSize="25dp"
             android:gravity="bottom"
-            android:paddingLeft="5dp">
+            android:paddingLeft="5dp"
+            android:fontFamily="@font/cafe">
         </TextView>
 
         <TextView
@@ -36,7 +37,8 @@
             android:text="1000원"
             android:textSize="20dp"
             android:gravity="center_vertical"
-            android:paddingLeft="5dp">
+            android:paddingLeft="5dp"
+            android:fontFamily="@font/cafe">
         </TextView>
 
     </LinearLayout>
@@ -78,7 +80,8 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="1개"
-                android:textSize="25dp">
+                android:textSize="25dp"
+                android:fontFamily="@font/cafe">
             </TextView>
 
         </LinearLayout>

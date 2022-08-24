@@ -19,7 +19,8 @@
         android:text="시작하려면 화면을 터치해주세요."
         android:textSize="60dp"
         android:gravity="center"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:fontFamily="@font/cafe"/>
 
     <View
         android:layout_width="match_parent"
