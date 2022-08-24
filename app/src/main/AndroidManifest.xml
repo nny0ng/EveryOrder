@@ -35,10 +35,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Order"
-            android:exported="false"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
