@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.layout_frame, fragment_menu).commitAllowingStateLoss();
 
         //V_main 서비스 호출
-        Intent intent = new Intent(getApplicationContext(), V_main.class);
+        Intent intent = new Intent(g, V_main.class);
         intent.putExtra("context", "hi");
         startService(intent);
     }

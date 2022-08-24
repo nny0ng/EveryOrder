@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kiosk">
         <service
-            android:name=".V_main"
+            android:name=".V_menu"
             android:enabled="true"
             android:exported="true"></service>
+        <service
+            android:name=".V_main"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity
             android:name=".PopupFinish"
