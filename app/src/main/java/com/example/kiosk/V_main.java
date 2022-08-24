@@ -34,6 +34,7 @@ public class V_main extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        // TTS 설정
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
             @Override
             public void onInit(int status){
@@ -52,6 +53,7 @@ public class V_main extends Service {
             // tts: label 1
             tts.speak("메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH, null);
 
+            // STT 설정
             sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
             sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
             sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
@@ -68,7 +70,7 @@ public class V_main extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // TTS 객체가 남아있다면 실행을 중지하고 메모리에서 제거한다.
+        // TTS 객체가 남아있다면 실행을 중지하고 메모리에서 제거
         if(tts != null){
             tts.stop();
             tts.shutdown();
@@ -114,7 +116,6 @@ public class V_main extends Service {
         @Override
         public void onError(int error) {
             String message;
-
             switch (error) {
                 case SpeechRecognizer.ERROR_AUDIO:
                     message = "오디오 에러";
@@ -152,10 +153,12 @@ public class V_main extends Service {
 
         @Override
         public void onResults(Bundle results) {
-            ArrayList<String> matches =
-                    results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             Log.d("STT", String.valueOf(matches));
+
+            // STT data to TTS
             tts.speak(matches.toString(), TextToSpeech.QUEUE_FLUSH, null);
+
             // 무한 반복
             //mRecognizer.startListening(sttIntent);
         }
