@@ -15,24 +15,23 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class V_menu extends Service {
+public class V_order extends Service {
 
     public TextToSpeech tts;
     Intent sttIntent;
     SpeechRecognizer mRecognizer;
 
-    public V_menu() {
+    public V_order() {
     }
 
     @Override
-
     public void onCreate() {
         super.onCreate();
         // TTS 설정
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
-            public void onInit(int status){
-                if(status != ERROR){
+            public void onInit(int status) {
+                if (status != ERROR) {
                     tts.setLanguage(Locale.KOREAN);
                 }
             }
@@ -41,22 +40,22 @@ public class V_menu extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        // tts: label 2
+        // tts: label 3
         int result;
-        result = tts.speak("돈가스, 리조또, 파스타, 음료 중 원하는 분류를 말해주세요 주문을 원하시면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH, null);
+        result = tts.speak("현재 장바구니에는 '제'가 있습니다. 추가를 원하시면 추가, 삭제를 원하시면 삭제, 주문 확정을 원하시면 확정 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH, null);
         Log.d("TTS state", String.valueOf(result));
         try {
-            Thread.sleep(9500);
+            Thread.sleep(9500); // 초 계산하기
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         // STT 설정
         sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
-        sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
+        sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
+        sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");
 
-        mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_menu.this);
+        mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_order.this);
         mRecognizer.setRecognitionListener(listener);
 
         // STT 시작
@@ -68,7 +67,7 @@ public class V_menu extends Service {
     public void onDestroy() {
         super.onDestroy();
         // TTS 객체가 남아있다면 실행을 중지하고 메모리에서 제거
-        if(tts != null){
+        if (tts != null) {
             tts.stop();
             tts.shutdown();
             tts = null;
@@ -81,74 +80,97 @@ public class V_menu extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    private Listener listener = new Listener(){
+    private Listener listener = new Listener() {
         @Override
         public void onResults(Bundle results) {
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             Log.d("STT", String.valueOf(matches));
-
-            speakMenu(matches.toString());
-
+            cart(matches.toString());
             // STT data to TTS
             //tts.speak(matches.toString(), TextToSpeech.QUEUE_FLUSH, null);
         }
 
-        public void speakMenu (String matches) {
+        public void cart(String matches) {
             Intent intent;
-            if (matches.contains("돈가스") || matches.contains("돈까스")) {
-                tts.speak("돈가스 메뉴들", TextToSpeech.QUEUE_FLUSH, null);
+            mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_order.this);
+            mRecognizer.setRecognitionListener(cartListener);
+
+            if (matches.contains("추가")) {
+                tts.speak("무엇을 추가하시겠습니까?", TextToSpeech.QUEUE_FLUSH, null);
+                mRecognizer.startListening(sttIntent);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
                 startActivity(intent);
                 stopSelf();
-            }
-            else if (matches.contains("리조또")) {
+            } else if (matches.contains("삭제")) {
                 tts.speak("리조또 메뉴들", TextToSpeech.QUEUE_FLUSH, null);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
                 startActivity(intent);
                 stopSelf();
-            }
-            else if (matches.contains("파스타")) {
+            } else if (matches.contains("확정")) {
                 tts.speak("파스타 메뉴들", TextToSpeech.QUEUE_FLUSH, null);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
                 startActivity(intent);
                 stopSelf();
-            }
-            else if (matches.contains("음료")) {
-                tts.speak("음료들", TextToSpeech.QUEUE_FLUSH, null);
+            } else {
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Service", "MENU");
-                startActivity(intent);
-                stopSelf();
-            }
-            else if (matches.contains("주문")) {
-                intent = new Intent(getApplicationContext(), Order.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Service", "ORDER");
-                startActivity(intent);
-                stopSelf();
-            }
-            else if (matches.contains("호출")) {
-                intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Service", "CALL");
-                startActivity(intent);
-                stopSelf();
-            }
-            else {
-                intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Service", "MENU");
+                intent.putExtra("Service", "MAIN");
                 startActivity(intent);
                 stopSelf();
             }
         }
     };
 
+    private Listener cartListener = new Listener(){
+        @Override
+        public void onResults(Bundle results) {
+            ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+            Log.d("STT", String.valueOf(matches));
+            cart(matches.toString());
+            // STT data to TTS
+            //tts.speak(matches.toString(), TextToSpeech.QUEUE_FLUSH, null);
+        }
+
+        public void cart(String matches) {
+            Intent intent;
+            mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_order.this);
+            mRecognizer.setRecognitionListener(cartListener);
+
+            if (matches.contains("추가")) {
+                tts.speak("무엇을 추가하시겠습니까?", TextToSpeech.QUEUE_FLUSH, null);
+                mRecognizer.startListening(sttIntent);
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Service", "MENU");
+                startActivity(intent);
+                stopSelf();
+            } else if (matches.contains("삭제")) {
+                tts.speak("리조또 메뉴들", TextToSpeech.QUEUE_FLUSH, null);
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Service", "MENU");
+                startActivity(intent);
+                stopSelf();
+            } else if (matches.contains("확정")) {
+                tts.speak("파스타 메뉴들", TextToSpeech.QUEUE_FLUSH, null);
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Service", "MENU");
+                startActivity(intent);
+                stopSelf();
+            } else {
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Service", "MAIN");
+                startActivity(intent);
+                stopSelf();
+            }
+        }
+    };
 }
