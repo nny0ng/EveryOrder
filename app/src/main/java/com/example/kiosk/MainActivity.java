@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.layout_frame, fragment_menu).commitAllowingStateLoss();
+
+        // 호출 버튼 클릭시 화면전환
+        Button button_call = (Button) findViewById(R.id.btn_call);
+        button_call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PopupCall.class);
+                startActivity(intent);
+            }
+        });
 
         // TTS 설정
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
@@ -88,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 startService(serviceIntent);
             }
         }
+
     }
 
     public void clickHandler(View view)
@@ -110,7 +122,5 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
-
 
 }
