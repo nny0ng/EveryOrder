@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="900dp"
     android:layout_height="600dp"
-    android:background="#868e96"
+    android:background="@drawable/popup_circle"
     android:layout_gravity="center"
     android:gravity="center">
 
@@ -11,11 +11,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="60dp"
             android:textStyle="bold"
             android:text="주문이 완료되었습니다.\n조금만 기다려주세요!"
@@ -27,9 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="5초 후 초기화면으로 넘어갑니다."
-            android:paddingTop="10dp"
+            android:paddingTop="30dp"
             android:textSize="35dp"
             android:textStyle="bold"
             android:fontFamily="@font/cafe_air">

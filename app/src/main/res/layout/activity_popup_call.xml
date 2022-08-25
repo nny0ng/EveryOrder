@@ -31,7 +31,7 @@
             android:layout_weight="0.2"
             android:background="@drawable/btn_outline_red"
             android:text="직원호출"
-            android:textSize="50dp"
+            android:textSize="40dp"
             android:fontFamily="@font/cafe"/>
 
         <View
@@ -46,7 +46,7 @@
             android:layout_weight="0.2"
             android:background="@drawable/btn_outline_gray"
             android:text="물티슈"
-            android:textSize="50dp"
+            android:textSize="40dp"
             android:fontFamily="@font/cafe"/>
 
         <View
@@ -64,7 +64,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5">
+        android:layout_weight="0.5"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <View
             android:layout_width="0dp"
@@ -78,7 +80,7 @@
             android:layout_weight="0.2"
             android:background="@drawable/btn_outline_gray"
             android:text="물"
-            android:textSize="50dp"
+            android:textSize="40dp"
             android:fontFamily="@font/cafe"/>
 
         <View
@@ -93,21 +95,36 @@
             android:layout_weight="0.2"
             android:background="@drawable/btn_outline_gray"
             android:text="앞접시"
-            android:textSize="50dp"
+            android:textSize="40dp"
             android:fontFamily="@font/cafe"/>
 
-        <Button
-            android:id="@+id/btn_back"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.25"
-            android:background="#00FF0000"
-            android:text="뒤로가기"
-            android:textSize="40dp"
-            android:textStyle="bold"
-            android:paddingRight="80dp"
-            android:gravity="bottom|right"
-            android:fontFamily="@font/cafe"/>
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="뒤로"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:backgroundTint="@color/gray"
+                android:fontFamily="@font/cafe_air"
+                android:layout_marginLeft="120dp"/>
+
+
+        </LinearLayout>
 
     </LinearLayout>
 

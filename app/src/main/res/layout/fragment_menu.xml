@@ -17,7 +17,8 @@
             android:layout_margin="15dp"
             android:orientation="vertical"
             android:weightSum="1"
-            android:layout_weight="0.58">
+            android:layout_weight="0.58"
+            android:background="@drawable/outline_gray">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_layout"
@@ -79,18 +80,24 @@
             android:layout_height="match_parent"
             android:layout_weight="0.4"
             android:layout_margin="15dp"
-            android:weightSum="1"
+            android:weightSum="1.02"
             android:orientation="vertical"
             android:background="@drawable/outline_gray">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.02"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.1"
                 android:gravity="center"
-                android:text="- 장바구니 -"
+                android:text="🛒 장바구니 🛒"
                 android:textStyle="bold"
                 android:textSize="30dp"
+                android:textColor="@color/black"
                 android:fontFamily="@font/cafe"></TextView>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -109,7 +116,10 @@
                     android:id="@+id/btn_go_order"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="주문하기"
                     android:textStyle="bold"
                     android:textSize="30dp"

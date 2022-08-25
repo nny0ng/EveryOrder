@@ -6,8 +6,8 @@
     android:weightSum="1"
     android:layout_marginTop="20dp"
     android:layout_marginBottom="10dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginLeft="20dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginLeft="30dp"
     android:background="@drawable/outline_gray">
 
     <!-- 음식이미지 -->
@@ -17,7 +17,8 @@
         android:layout_height="match_parent"
         android:layout_weight="0.3"
         android:src="@drawable/cheesepork"
-        android:scaleType="centerInside"/>
+        android:scaleType="centerInside"
+        android:padding="10dp"/>
 
 
     <LinearLayout
@@ -32,12 +33,13 @@
             android:id="@+id/tv_menu_name"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.6"
+            android:layout_weight="0.57"
             android:text="치즈 돈까스"
             android:textSize="40dp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:gravity="center_vertical|bottom"/>
+            android:gravity="center_vertical|bottom"
+            android:fontFamily="@font/cafe"/>
 
         <!-- 음식 가격 -->
         <TextView
@@ -45,11 +47,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.4"
-            android:text="8,900"
+            android:layout_marginTop="10dp"
+            android:text="8900"
             android:textColor="@color/darkgray"
-            android:textStyle="bold"
-            android:textSize="30dp"
-            android:paddingLeft="7dp"/>
+            android:textSize="27dp"
+            android:paddingLeft="2dp"
+            android:fontFamily="@font/cafe"/>
 
 
     </LinearLayout>
