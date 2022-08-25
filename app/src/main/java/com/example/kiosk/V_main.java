@@ -28,6 +28,7 @@ public class V_main extends Service {
 
     Intent sttIntent;
     SpeechRecognizer mRecognizer;
+    public boolean done = false;
 
     public V_main() {
     }
@@ -38,9 +39,6 @@ public class V_main extends Service {
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        // tts: label 1
-        SpeakManager.speak("해당 프로그램은 터치+음성입니다. 터치하면 메뉴가 추가되니 주의해주세요 ,,,메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
-        //SpeakManager.speak("", TextToSpeech.QUEUE_ADD);
 
         // STT 설정
         sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -49,25 +47,43 @@ public class V_main extends Service {
 
         mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_main.this);
         mRecognizer.setRecognitionListener(listener);
-        SpeakManager.returnObject().setOnUtteranceProgressListener(new UtteranceProgressListener() {
-            @Override
-            public void onStart(String utteranceId) {
-            }
 
+//        SpeakManager.returnObject().setOnUtteranceProgressListener(new UtteranceProgressListener() {
+//            @Override
+//            public void onStart(String utteranceId) {
+//            }
+//
+//            @Override
+//            public void onDone(String utteranceId) {
+//                Log.d("hihi", "hii");
+//                done = true;
+//            }
+//
+//            @Override
+//            public void onError(String utteranceId) {
+//            }
+//        });
+        Thread thread = new Thread(new Runnable() {
             @Override
-            public void onDone(String utteranceId) {
-                Log.d("hihi", "hii");
-                mRecognizer.startListening(sttIntent);
-            }
-
-            @Override
-            public void onError(String utteranceId) {
+            public void run() {
+                while (SpeakManager.returnObject().isSpeaking());
             }
         });
 
+        // tts: label 1
+        SpeakManager.speak("해당 프로그램은 터치+음성입니다. 터치하면 메뉴가 추가되니 주의해주세요 ,,,메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
+
+        thread.start();
+        try {
+            thread.join();
+            mRecognizer.startListening(sttIntent);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //SpeakManager.speak("", TextToSpeech.QUEUE_ADD);
+
         //tts.join();
-
-
         return super.onStartCommand(intent, flags, startId);
     }
 //    @Override
