@@ -25,8 +25,7 @@ public class SpeakManager {
         speaker.speak(toBeSpoken, mode, null, "0000000");
     }
 
-    public static void pause() {
-        speaker.stop();
-        speaker.shutdown();
+    public static TextToSpeech returnObject() {
+        return speaker;
     }
 }

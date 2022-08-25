@@ -10,6 +10,7 @@ import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -25,7 +26,6 @@ import java.util.concurrent.TimeUnit;
 
 public class V_main extends Service {
 
-    public TextToSpeech tts;
     Intent sttIntent;
     SpeechRecognizer mRecognizer;
 
@@ -36,45 +36,73 @@ public class V_main extends Service {
     public void onCreate() {
         super.onCreate();
     }
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if(intent == null){
-            return Service.START_STICKY;
-        }else{
-            // tts: label 1
-            SpeakManager.speak("해당 프로그램은 터치+음성입니다. 터치하면 메뉴가 추가되니 주의해주세요", TextToSpeech.QUEUE_FLUSH);
-            SpeakManager.speak("메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_ADD);
+        // tts: label 1
+        SpeakManager.speak("해당 프로그램은 터치+음성입니다. 터치하면 메뉴가 추가되니 주의해주세요 ,,,메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
+        //SpeakManager.speak("", TextToSpeech.QUEUE_ADD);
 
-//            try {
-//                Thread.sleep(12500);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+        // STT 설정
+        sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
+        sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
-            // STT 설정
-            sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-            sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
-            sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
+        mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_main.this);
+        mRecognizer.setRecognitionListener(listener);
+        SpeakManager.returnObject().setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String utteranceId) {
+            }
 
-            mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_main.this);
-            mRecognizer.setRecognitionListener(listener);
+            @Override
+            public void onDone(String utteranceId) {
+                Log.d("hihi", "hii");
+                mRecognizer.startListening(sttIntent);
+            }
 
-            // STT 시작
-            mRecognizer.startListening(sttIntent);
-        }
+            @Override
+            public void onError(String utteranceId) {
+            }
+        });
+
+        //tts.join();
+
+
         return super.onStartCommand(intent, flags, startId);
     }
+//    @Override
+//    public int onStartCommand(Intent intent, int flags, int startId) {
+//        if(intent == null){
+//            return Service.START_STICKY;
+//        }else{
+//            // tts: label 1
+//            SpeakManager.speak("해당 프로그램은 터치+음성입니다. 터치하면 메뉴가 추가되니 주의해주세요", TextToSpeech.QUEUE_FLUSH);
+//            SpeakManager.speak("메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_ADD);
+//
+////            try {
+////                Thread.sleep(12500);
+////            } catch (InterruptedException e) {
+////                e.printStackTrace();
+////            }
+//
+//            // STT 설정
+//            sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+//            sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
+//            sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
+//
+//            mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_main.this);
+//            mRecognizer.setRecognitionListener(listener);
+//
+//            // STT 시작
+//            mRecognizer.startListening(sttIntent);
+//            //mRecognizer.startListening(sttIntent);
+//        }
+//        return super.onStartCommand(intent, flags, startId);
+//    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // TTS 객체가 남아있다면 실행을 중지하고 메모리에서 제거
-        if(tts != null) {
-            tts.stop();
-            tts.shutdown();
-            tts = null;
-        }
     }
 
     @Override
@@ -86,15 +114,15 @@ public class V_main extends Service {
     // listener: label 1
     private Listener listener = new Listener() {
 
-        @Override
-        public void onReadyForSpeech(Bundle params) {
-            super.onReadyForSpeech(params);
-            try {
-                Thread.sleep(12500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+//        @Override
+//        public void onReadyForSpeech(Bundle params) {
+//            super.onReadyForSpeech(params);
+//            try {
+//                Thread.sleep(12500);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         @Override
         public void onResults(Bundle results) {
@@ -102,9 +130,6 @@ public class V_main extends Service {
             Log.d("main STT", String.valueOf(matches));
 
             changeService(matches.toString());
-
-            // STT data to TTS
-            //tts.speak(matches.toString(), TextToSpeech.QUEUE_FLUSH, null);
         }
 
         public void changeService(String matches) {

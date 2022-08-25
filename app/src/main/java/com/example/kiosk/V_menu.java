@@ -34,11 +34,11 @@ public class V_menu extends Service {
         // tts: label 2
         SpeakManager.speak("돈가스, 리조또, 파스타, 음료 중 원하는 분류를 말해주세요 주문을 원하시면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
 
-        try {
-            Thread.sleep(9500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(9500);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         // STT 설정
         sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -72,6 +72,16 @@ public class V_menu extends Service {
 
     // listener: label 2
     private Listener listener = new Listener(){
+        @Override
+        public void onReadyForSpeech(Bundle params) {
+            super.onReadyForSpeech(params);
+            try {
+                Thread.sleep(9500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         @Override
         public void onResults(Bundle results) {
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);

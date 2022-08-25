@@ -29,19 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private Fragment_Menu fragment_menu;
     private Fragment_Order fragment_order;
     private FragmentTransaction fragmentTransaction;
-    private TextToSpeech tts;
-    final int PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // STT 퍼미션
-        if(Build.VERSION.SDK_INT >= 23){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET,
-                    Manifest.permission.RECORD_AUDIO}, PERMISSION);
-        }
 
         fragmentManager = getSupportFragmentManager();
         fragment_menu = new Fragment_Menu();
@@ -59,18 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-//        // TTS 설정
-//        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
-//            @Override
-//            public void onInit(int status){
-//                if(status != ERROR){
-//                    tts.setLanguage(Locale.KOREAN);
-//                }
-//            }
-//        });
-
-        SpeakManager.setup(this);
 
         //V_main 서비스 호출
         Intent intent = new Intent(getApplicationContext(), V_main.class);

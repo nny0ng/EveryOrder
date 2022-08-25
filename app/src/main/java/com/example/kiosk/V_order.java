@@ -76,6 +76,16 @@ public class V_order extends Service {
 
     private Listener listener = new Listener() {
         @Override
+        public void onReadyForSpeech(Bundle params) {
+            super.onReadyForSpeech(params);
+            try {
+                Thread.sleep(9500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
         public void onResults(Bundle results) {
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             Log.d("STT", String.valueOf(matches));
@@ -113,6 +123,16 @@ public class V_order extends Service {
     };
 
     private Listener cartListener = new Listener(){
+        @Override
+        public void onReadyForSpeech(Bundle params) {
+            super.onReadyForSpeech(params);
+            try {
+                Thread.sleep(5500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         @Override
         public void onResults(Bundle results) {
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
