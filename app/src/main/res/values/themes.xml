@@ -22,7 +22,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="tab_text" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
-        <item name="android:textSize">25dp</item>
+    <!-- TabLayout -->
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/cafe</item>
+        <item name="android:textSize">30dp</item>
     </style>
+
 </resources>

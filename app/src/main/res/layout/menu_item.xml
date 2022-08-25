@@ -8,7 +8,7 @@
     android:layout_marginBottom="10dp"
     android:layout_marginRight="30dp"
     android:layout_marginLeft="30dp"
-    android:background="@drawable/outline_gray">
+    android:background="@drawable/outline_orange">
 
     <!-- 음식이미지 -->
     <ImageView
@@ -37,7 +37,7 @@
             android:text="치즈 돈까스"
             android:textSize="40dp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/word"
             android:gravity="center_vertical|bottom"
             android:fontFamily="@font/cafe"/>
 
