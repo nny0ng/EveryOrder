@@ -8,7 +8,7 @@
     android:layout_marginLeft="40dp"
     android:layout_marginRight="40dp"
     android:layout_marginBottom="5dp"
-    android:background="@drawable/outline_gray">
+    android:background="@drawable/outline_orange">
 
     <!-- 품목 -->
     <LinearLayout
@@ -17,7 +17,7 @@
         android:layout_weight="5"
         android:orientation="horizontal"
         android:weightSum="1"
-        android:background="#FAFAFA"
+        android:background="@color/orange_background"
         android:layout_marginBottom="2dp"
         android:layout_marginTop="2dp"
         android:layout_marginLeft="2dp">
@@ -30,7 +30,7 @@
             android:layout_weight="0.6"
             android:text="돈가스"
             android:textSize="24dp"
-            android:textColor="@color/black"
+            android:textColor="@color/word"
             android:gravity="center"
             android:fontFamily="@font/cafe_air"
             android:textStyle="bold"/>
@@ -45,6 +45,7 @@
             android:textSize="22dp"
             android:gravity="center|left"
             android:paddingLeft="20dp"
+            android:textColor="@color/darkgray"
             android:fontFamily="@font/cafe_air"
             android:textStyle="bold"/>
 
@@ -61,7 +62,7 @@
         android:gravity="center"
         android:fontFamily="@font/cafe_air"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/word"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"/>
 
@@ -74,10 +75,10 @@
         android:text="13,800원"
         android:textSize="22dp"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/word"
         android:fontFamily="@font/cafe_air"
         android:textStyle="bold"
-        android:background="#FAFAFA"
+        android:background="@color/orange_background"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"
         android:layout_marginRight="2dp"/>

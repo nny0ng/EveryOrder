@@ -9,5 +9,5 @@
         android:topLeftRadius="100dp"/>
     <stroke
         android:width="2dp"
-        android:color="@color/gray" />
+        android:color="@color/word" />
 </shape>

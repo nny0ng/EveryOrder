@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="160dp"
     android:orientation="vertical"
-    android:layout_marginTop="10dp"
     android:layout_marginRight="30dp"
     android:layout_marginLeft="30dp"
     android:weightSum="1">
@@ -19,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.7"
-        android:background="@drawable/outline_gray">
+        android:background="@drawable/outline_orange">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -34,12 +33,12 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"
                 android:text="음식 이름"
-                android:textSize="24dp"
+                android:textSize="23dp"
                 android:gravity="bottom|center"
                 android:paddingLeft="5dp"
                 android:fontFamily="@font/cafe_air"
                 android:textStyle="bold"
-                android:textColor="@color/black">
+                android:textColor="@color/word">
             </TextView>
 
             <TextView
@@ -48,7 +47,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.4"
                 android:text="1000원"
-                android:textSize="22dp"
+                android:textSize="21dp"
+                android:textColor="@color/darkgray"
                 android:gravity="center"
                 android:paddingLeft="5dp"
                 android:fontFamily="@font/cafe_air"
@@ -97,7 +97,7 @@
                     android:textSize="24dp"
                     android:fontFamily="@font/cafe_air"
                     android:textStyle="bold"
-                    android:textColor="@color/black">
+                    android:textColor="@color/word">
                 </TextView>
 
             </LinearLayout>

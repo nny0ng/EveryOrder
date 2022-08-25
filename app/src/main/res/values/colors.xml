@@ -9,4 +9,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#d3d3d3</color>
     <color name="darkgray">#808080</color>
+    <color name="orange_background">#FBF6E8</color>
+    <color name="orange">#F1D695</color>
+    <color name="pork_inside">#FDE4CA</color>
+    <color name="pork_sause">#815937</color>
+    <color name="plate_dark">#D8D8D8</color>
+    <color name="plate">#F7F7F7</color>
+    <color name="pork_outside">#E4C069</color>
+    <color name="pork_outside_dark">#DAAC53</color>
+    <color name="word">#6F4C2F</color>
 </resources>

@@ -29,9 +29,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
-            android:background="@drawable/btn_outline_red"
+            android:background="@drawable/btn_outline_dark"
             android:text="직원호출"
             android:textSize="40dp"
+            android:textColor="@color/word"
             android:fontFamily="@font/cafe"/>
 
         <View
@@ -44,9 +45,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
-            android:background="@drawable/btn_outline_gray"
+            android:background="@drawable/btn_outline_orange"
             android:text="물티슈"
             android:textSize="40dp"
+            android:textColor="@color/word"
             android:fontFamily="@font/cafe"/>
 
         <View
@@ -78,9 +80,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
-            android:background="@drawable/btn_outline_gray"
+            android:background="@drawable/btn_outline_orange"
             android:text="물"
             android:textSize="40dp"
+            android:textColor="@color/word"
             android:fontFamily="@font/cafe"/>
 
         <View
@@ -93,9 +96,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
-            android:background="@drawable/btn_outline_gray"
+            android:background="@drawable/btn_outline_orange"
             android:text="앞접시"
             android:textSize="40dp"
+            android:textColor="@color/word"
             android:fontFamily="@font/cafe"/>
 
         <LinearLayout
@@ -114,12 +118,13 @@
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:text="뒤로"
                 android:textSize="30dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:backgroundTint="@color/gray"
+                android:textColor="@color/word"
+                android:background="@drawable/btn_circle"
                 android:fontFamily="@font/cafe_air"
                 android:layout_marginLeft="120dp"/>
 

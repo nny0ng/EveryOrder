@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/orange_background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_weight="0.8"
         android:weightSum="1">
 
         <View
@@ -22,7 +22,7 @@
             android:layout_margin="15dp"
             android:weightSum="1.02"
             android:orientation="vertical"
-            android:background="@drawable/outline_gray">
+            android:background="@drawable/outline_orange">
 
             <View
                 android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                     android:textSize="35dp"
                     android:gravity="center"
                     android:fontFamily="@font/cafe"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/word"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -55,7 +55,7 @@
                     android:textSize="35dp"
                     android:gravity="center"
                     android:fontFamily="@font/cafe"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/word"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -65,7 +65,7 @@
                     android:textSize="35dp"
                     android:gravity="center"
                     android:fontFamily="@font/cafe"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/word"/>
 
             </LinearLayout>
 
@@ -109,7 +109,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.04"/>
+                    android:layout_weight="0.05"/>
 
                 <!-- 뒤로가기 -->
                 <Button
@@ -120,7 +120,10 @@
                     android:layout_weight="0.1"
                     android:text="뒤로"
                     android:textSize="30dp"
-                    android:fontFamily="@font/cafe"/>
+                    android:textColor="@color/word"
+                    android:fontFamily="@font/cafe"
+                    android:background="@drawable/btn_circle"
+                    android:layout_margin="5dp"/>
 
                 <View
                     android:layout_width="0dp"
@@ -137,7 +140,10 @@
                     android:layout_gravity="right"
                     android:text="주문확정"
                     android:textSize="30dp"
-                    android:fontFamily="@font/cafe"/>
+                    android:textColor="@color/word"
+                    android:fontFamily="@font/cafe"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/btn_circle"/>
 
                 <View
                     android:layout_width="0dp"
@@ -152,11 +158,11 @@
                 android:layout_weight="0.05"/>
 
         </LinearLayout>
+
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.03"></View>
-
     </LinearLayout>
 
 

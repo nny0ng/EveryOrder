@@ -4,27 +4,11 @@
     android:id="@+id/layout_start"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="5">
+    android:orientation="horizontal">
 
-    <View
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:text="시작하려면 화면을 터치해주세요."
-        android:textSize="60dp"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:fontFamily="@font/cafe"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"/>
+        android:layout_height="match_parent"
+        android:src="@drawable/startimage"/>
 
 </LinearLayout>
