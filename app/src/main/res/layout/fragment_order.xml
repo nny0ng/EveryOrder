@@ -15,132 +15,141 @@
             android:layout_height="match_parent"
             android:layout_weight="0.03"></View>
 
-        <!-- 품목 수량 가격 -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.94"
             android:layout_margin="15dp"
-            android:weightSum="3"
-            android:orientation="horizontal"
+            android:weightSum="1.02"
+            android:orientation="vertical"
             android:background="@drawable/outline_gray">
 
-            <!-- 품목 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.02"/>
+
+            <!-- 품목 수량 금액 -->
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:weightSum="1">
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:orientation="horizontal"
+                android:weightSum="10">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.1"
-                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
                     android:text="품목"
-                    android:textColor="@color/black"
-                    android:textSize="30dp"
-                    android:textStyle="bold" />
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/cafe"
+                    android:textColor="@color/black"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.75" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="수량"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/cafe"
+                    android:textColor="@color/black"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.15">
-                    <Button
-                        android:id="@+id/btn_back"
-                        android:layout_width="80dp"
-                        android:layout_height="70dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/btn_circle"
-                        android:text="뒤로"
-                        android:textSize="25dp"
-                        android:onClick="clickHandler">
-                    </Button>
-                </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:text="금액"
+                    android:textSize="35dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/cafe"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
-            <!-- 수량 -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_order"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6"></androidx.recyclerview.widget.RecyclerView>
+
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:weightSum="1">
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:weightSum="3"
+                android:layout_weight="0.1">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"></View>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.1"
+                    android:id="@+id/tv_total_price"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cafe"
                     android:gravity="center"
-                    android:text="수량"
-                    android:textStyle="bold"
-                    android:textSize="30dp"
-                    android:textColor="@color/black"/>
+                    android:text="총 가격"
+                    android:textColor="@color/black"
+                    android:textSize="35dp"
+                    android:textStyle="bold"></TextView>
+            </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.75"/>
+            <!-- 뒤로가기, 주문확정 버튼 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.15"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.15"></View>
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.04"/>
 
-            </LinearLayout>
-
-            <!-- 금액 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:weightSum="1">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                <!-- 뒤로가기 -->
+                <Button
+                    android:onClick="clickHandler"
+                    android:id="@+id/btn_back"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.1"
-                    android:gravity="center"
-                    android:text="금액"
-                    android:textStyle="bold"
+                    android:text="뒤로"
                     android:textSize="30dp"
-                    android:textColor="@color/black"/>
+                    android:fontFamily="@font/cafe"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.75"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:orientation="vertical"
-                    android:layout_weight="0.15">
-                    <Button
-                        android:id="@+id/btn_submit_order"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="주문확정"
-                        android:textSize="30dp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginRight="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:onClick="clickHandler"/>
-                </LinearLayout>
+                <!-- 주문확정 -->
+                <Button
+                    android:onClick="clickHandler"
+                    android:id="@+id/btn_submit_order"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:layout_gravity="right"
+                    android:text="주문확정"
+                    android:textSize="30dp"
+                    android:fontFamily="@font/cafe"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.04"/>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.05"/>
 
         </LinearLayout>
         <View

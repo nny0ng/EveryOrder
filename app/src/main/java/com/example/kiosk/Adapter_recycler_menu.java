@@ -65,24 +65,30 @@ public class Adapter_recycler_menu extends RecyclerView.Adapter<Adapter_recycler
                     if(pos != RecyclerView.NO_POSITION){
                         ShoppingItem shoppingItem = new ShoppingItem();
                         MenuItem menuItem = Menulist.get(pos);
-                        shoppingItem.setName(menuItem.getName().toString());
-                        shoppingItem.setPrice(menuItem.getPrice().toString());
-                        /*
+                        shoppingItem.setName(menuItem.getName());
+                        shoppingItem.setPrice(menuItem.getPrice());
+                        shoppingItem.setNum("1개");
+
                         boolean check = false;
                         for(int i = 0; i < Adapter_recycler_shopping.ShoppingList.size(); i++){
-                            if(Adapter_recycler_shopping.ShoppingList.get(i).getName().equals(shoppingItem.getName())){
+                            ShoppingItem selected = Adapter_recycler_shopping.ShoppingList.get(i);
+                            if(selected.getName().equals(shoppingItem.getName())){
                                 check = true;
-                                String temp = Adapter_recycler_shopping.ShoppingList.get(i).getNum().toString();
-                                System.out.println(temp);
-                                //int num = Integer.parseInt(temp.substring(temp.lastIndexOf("개") + 1));
-                                //num++;
-                                //Adapter_recycler_shopping.ShoppingList.get(i).setNum(num + "개");
+                                int num = Integer.parseInt(selected.num.substring(0, selected.num.indexOf("개")));
+                                System.out.println(num);
+                                num++;
+                                selected.setNum(num + "개");
+                                //System.out.println(selected.getNum());
+                                Adapter_recycler_shopping.ShoppingList.set(i, selected);
+                                System.out.println(Adapter_recycler_shopping.ShoppingList.get(i).getNum());
+                                Fragment_Menu.adapter.notifyDataSetChanged();
+                                break;
                             }
                         }
+
                         if(check == false){
                             Adapter_recycler_shopping.ShoppingList.add(shoppingItem);
-                        }*/
-                        Adapter_recycler_shopping.ShoppingList.add(shoppingItem);
+                        }
                         Fragment_Menu.adapter.notifyDataSetChanged();
                     }
                 }

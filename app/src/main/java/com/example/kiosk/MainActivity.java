@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.btn_submit_order:
                 Intent intent = new Intent(getApplicationContext(), PopupFinish.class);
+                Adapter_recycler_shopping.ShoppingList.clear();
                 startActivity(intent);
                 break;
         }

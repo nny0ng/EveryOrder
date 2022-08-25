@@ -3,6 +3,8 @@ package com.example.kiosk;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -18,6 +20,9 @@ public class PopupFinish extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup_finish);
+
+        // 배경 투명
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         TextView tv = (TextView)findViewById(R.id.tv_second);
         CountDownTimer countDownTimer = new CountDownTimer(5000, 1000) {

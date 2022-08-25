@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal"
+    android:weightSum="10"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/outline_gray">
+
+    <!-- 품목 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:background="#FAFAFA"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="2dp">
+
+        <!-- 품목-이름 -->
+        <TextView
+            android:id="@+id/tv_order_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:text="돈가스"
+            android:textSize="24dp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:fontFamily="@font/cafe_air"
+            android:textStyle="bold"/>
+
+        <!-- 품목-가격-->
+        <TextView
+            android:id="@+id/tv_order_price"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:text="(6,900)"
+            android:textSize="22dp"
+            android:gravity="center|left"
+            android:paddingLeft="20dp"
+            android:fontFamily="@font/cafe_air"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <!-- 수량 -->
+    <TextView
+        android:id="@+id/tv_order_num"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:text="2개"
+        android:textSize="24dp"
+        android:gravity="center"
+        android:fontFamily="@font/cafe_air"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"/>
+
+    <!-- 금액 -->
+    <TextView
+        android:id="@+id/tv_order_total"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:text="13,800원"
+        android:textSize="22dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:fontFamily="@font/cafe_air"
+        android:textStyle="bold"
+        android:background="#FAFAFA"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginRight="2dp"/>
+
+
+</LinearLayout>

@@ -3,6 +3,8 @@ package com.example.kiosk;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -15,6 +17,9 @@ public class PopupCall extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup_call);
+
+        // 배경 투명
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         Button btn1 = (Button) findViewById(R.id.btn_callstaff);
         Button btn2 = (Button) findViewById(R.id.btn_waterpaper);

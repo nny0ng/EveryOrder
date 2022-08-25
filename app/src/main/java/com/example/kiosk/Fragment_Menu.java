@@ -16,6 +16,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Fragment_Menu extends Fragment {
     public static Adapter_recycler_shopping adapter;
 
@@ -70,7 +73,50 @@ public class Fragment_Menu extends Fragment {
         rv_shopping.setLayoutManager(linearLayoutManager);
 
         adapter = new Adapter_recycler_shopping();
+        adapter.setOnItemClickListener(new Adapter_recycler_shopping.OnItemClickListener() {
+            @Override
+            public void onMinusClick(View view, int position) {
+                ArrayList<ShoppingItem> ShoppingList = Adapter_recycler_shopping.ShoppingList;
+                ShoppingItem selected = ShoppingList.get(position);
+                int num = Integer.parseInt(selected.getNum().substring(0, selected.getNum().indexOf("개")));
+                if(num > 1){
+                    num--;
+                    selected.setNum(num + "개");
+                    ShoppingList.set(position, selected);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onPlusClick(View view, int position) {
+                ArrayList<ShoppingItem> ShoppingList = Adapter_recycler_shopping.ShoppingList;
+                ShoppingItem selected = ShoppingList.get(position);
+                int num = Integer.parseInt(selected.getNum().substring(0, selected.getNum().indexOf("개")));
+                if(num >= 1){
+                    num++;
+                    selected.setNum(num + "개");
+                    ShoppingList.set(position, selected);
+                    adapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onCancelClick(View view, int position) {
+                ArrayList<ShoppingItem> ShoppingList = Adapter_recycler_shopping.ShoppingList;
+                int size = ShoppingList.size();
+                ShoppingItem selected = ShoppingList.get(position);
+
+                for(int i = position + 1; i < size; i++){
+                    ShoppingList.set(i - 1, ShoppingList.get(i));
+                }
+                ShoppingList.remove(size - 1);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
         rv_shopping.setAdapter(adapter);
+
 
         return view;
     }

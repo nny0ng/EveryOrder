@@ -3,14 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/activity_order.xml" value="0.1" />
-        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/activity_popup_finish.xml" value="0.1" />
-        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/activity_start.xml" value="0.1" />
-        <entry key="..\:/Users/USER/StudioProjects/Diaruga/app/src/main/res/layout/menu_item.xml" value="0.1" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_main.xml" value="0.10733695652173914" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/Diaruga/app/src/main/res/layout/activity_start.xml" value="0.10733695652173914" />
         <entry key="..\:/Users/andre/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_menu.xml" value="0.10733695652173914" />
+        <entry key="..\:/Users/andre/AndroidStudioProjects/Diaruga/app/src/main/res/layout/fragment_order.xml" value="0.12771739130434784" />
       </map>
     </option>
   </component>
