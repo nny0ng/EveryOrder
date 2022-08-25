@@ -25,26 +25,14 @@ public class V_menu extends Service {
     }
 
     @Override
-
     public void onCreate() {
         super.onCreate();
-        // TTS 설정
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
-            @Override
-            public void onInit(int status){
-                if(status != ERROR){
-                    tts.setLanguage(Locale.KOREAN);
-                }
-            }
-        });
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // tts: label 2
-        int result;
-        result = tts.speak("돈가스, 리조또, 파스타, 음료 중 원하는 분류를 말해주세요 주문을 원하시면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH, null);
-        Log.d("TTS state", String.valueOf(result));
+        SpeakManager.speak("돈가스, 리조또, 파스타, 음료 중 원하는 분류를 말해주세요 주문을 원하시면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
 
         try {
             Thread.sleep(9500);
@@ -98,7 +86,7 @@ public class V_menu extends Service {
         public void speakMenu (String matches) {
             Intent intent;
             if (matches.contains("돈가스") || matches.contains("돈까스")) {
-                tts.speak("돈가스 메뉴들", TextToSpeech.QUEUE_FLUSH, null);
+                SpeakManager.speak("돈가스 메뉴들", TextToSpeech.QUEUE_FLUSH);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");

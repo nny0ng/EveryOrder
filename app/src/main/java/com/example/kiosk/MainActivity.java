@@ -60,15 +60,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // TTS 설정
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
-            @Override
-            public void onInit(int status){
-                if(status != ERROR){
-                    tts.setLanguage(Locale.KOREAN);
-                }
-            }
-        });
+//        // TTS 설정
+//        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
+//            @Override
+//            public void onInit(int status){
+//                if(status != ERROR){
+//                    tts.setLanguage(Locale.KOREAN);
+//                }
+//            }
+//        });
+
+        SpeakManager.setup(this);
 
         //V_main 서비스 호출
         Intent intent = new Intent(getApplicationContext(), V_main.class);

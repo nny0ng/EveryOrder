@@ -21,6 +21,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class V_main extends Service {
 
@@ -34,15 +35,6 @@ public class V_main extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        // TTS 설정
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
-            @Override
-            public void onInit(int status){
-                if(status != ERROR){
-                    tts.setLanguage(Locale.KOREAN);
-                }
-            }
-        });
     }
 
     @Override
@@ -51,21 +43,14 @@ public class V_main extends Service {
             return Service.START_STICKY;
         }else{
             // tts: label 1
-            int result;
-            result = tts.speak("해당 프로그램은 터치+음성입니다. 터치하면 메뉴가 추가되니 주의해주세요", TextToSpeech.QUEUE_FLUSH, null);
-            Log.d("TTS state", String.valueOf(result));//tts.playSilence(2000, TextToSpeech.QUEUE_ADD, null);
-            try {
-                Thread.sleep(7000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            SpeakManager.speak("해당 프로그램은 터치+음성입니다. 터치하면 메뉴가 추가되니 주의해주세요", TextToSpeech.QUEUE_FLUSH);
+            SpeakManager.speak("메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_ADD);
 
-            tts.speak("메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH, null);
-            try {
-                Thread.sleep(7100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                Thread.sleep(12500);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
 
             // STT 설정
             sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -76,7 +61,7 @@ public class V_main extends Service {
             mRecognizer.setRecognitionListener(listener);
 
             // STT 시작
-            if (!tts.isSpeaking()) mRecognizer.startListening(sttIntent);
+            mRecognizer.startListening(sttIntent);
         }
         return super.onStartCommand(intent, flags, startId);
     }
@@ -100,6 +85,17 @@ public class V_main extends Service {
 
     // listener: label 1
     private Listener listener = new Listener() {
+
+        @Override
+        public void onReadyForSpeech(Bundle params) {
+            super.onReadyForSpeech(params);
+            try {
+                Thread.sleep(12500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         @Override
         public void onResults(Bundle results) {
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);

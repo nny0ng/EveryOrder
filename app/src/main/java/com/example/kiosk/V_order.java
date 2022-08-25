@@ -31,23 +31,12 @@ public class V_order extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        // TTS 설정
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != ERROR) {
-                    tts.setLanguage(Locale.KOREAN);
-                }
-            }
-        });
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // tts: label 3
-        int result;
-        result = tts.speak("현재 장바구니에는 '제'가 있습니다. 추가를 원하시면 추가, 삭제를 원하시면 삭제, 주문 확정을 원하시면 확정 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH, null);
-        Log.d("TTS state", String.valueOf(result));
+        SpeakManager.speak("현재 장바구니에는 '제'가 있습니다. 추가를 원하시면 추가, 삭제를 원하시면 삭제, 주문 확정을 원하시면 확정 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
 
         try {
             Thread.sleep(9500); // 초 계산하기
