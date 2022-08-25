@@ -35,12 +35,12 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.1"
                 android:orientation="horizontal"
-                android:weightSum="3">
+                android:weightSum="10">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="5"
                     android:text="품목"
                     android:textSize="35dp"
                     android:gravity="center"
@@ -50,7 +50,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="수량"
                     android:textSize="35dp"
                     android:gravity="center"
@@ -60,7 +60,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="3"
                     android:text="금액"
                     android:textSize="35dp"
                     android:gravity="center"
