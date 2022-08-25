@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void processIntent(Intent intent) {
         Intent serviceIntent;
+        fragmentTransaction = fragmentManager.beginTransaction();
         if (intent != null) {
             String Service = intent.getStringExtra("Service");
             Log.d("main activity intent", String.valueOf(Service));
@@ -73,16 +74,20 @@ public class MainActivity extends AppCompatActivity {
                 startService(serviceIntent);
             }
             else if (Service.equals("MENU")) {
+                fragmentTransaction.replace(R.id.layout_frame, fragment_menu).commitAllowingStateLoss();
                 serviceIntent  = new Intent(getApplicationContext(), V_menu.class);
                 startService(serviceIntent);
             }
             else if (Service.equals("ORDER")) {
+                fragmentTransaction.replace(R.id.layout_frame, fragment_order).commitAllowingStateLoss();
                 serviceIntent  = new Intent(getApplicationContext(), V_order.class);
                 startService(serviceIntent);
             }
             else if (Service.equals("CALL")) {
+                startActivity(new Intent(getApplicationContext(), PopupCall.class));
                 serviceIntent  = new Intent(getApplicationContext(), V_call.class);
                 startService(serviceIntent);
+
             }
         }
 
@@ -109,5 +114,4 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
 }

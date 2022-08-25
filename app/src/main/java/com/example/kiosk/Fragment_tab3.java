@@ -16,6 +16,7 @@ import java.util.List;
 
 public class Fragment_tab3 extends Fragment {
 
+    public static List<String> listname = Arrays.asList("크림리조또", "로제리조또", "계란불고기볶음밥", "매콤치즈볶음밥");
     private Adapter_recycler_menu adapter;
 
     @Nullable
@@ -35,7 +36,6 @@ public class Fragment_tab3 extends Fragment {
 
     // 리조또
     private void getData() {
-        List<String> listname = Arrays.asList("크림리조또", "로제리조또", "계란불고기볶음밥", "매콤치즈볶음밥");
         List<String> listprice = Arrays.asList("8900원", "8900원", "8900원", "9900원");
         List<Integer> listResId = Arrays.asList(
                 R.drawable.creambap,

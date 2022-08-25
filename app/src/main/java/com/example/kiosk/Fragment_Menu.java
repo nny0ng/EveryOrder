@@ -98,7 +98,6 @@ public class Fragment_Menu extends Fragment {
                     ShoppingList.set(position, selected);
                     adapter.notifyDataSetChanged();
                 }
-
             }
 
             @Override

@@ -32,7 +32,7 @@ public class V_menu extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // tts: label 2
-        SpeakManager.speak("돈가스, 리조또, 파스타, 음료 중 원하는 분류를 말해주세요 주문을 원하시면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
+        SpeakManager.speak("돈가스, 리조또, 파스타, 음료 중 원하는 분류를 선택하세요. 주문을 원하시면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
 
 //        try {
 //            Thread.sleep(9500);
@@ -84,9 +84,17 @@ public class V_menu extends Service {
 
         @Override
         public void onResults(Bundle results) {
+            String service;
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             Log.d("STT", String.valueOf(matches));
-
+            service = matches.toString().replaceAll(" ", "");
+            if (service.lastIndexOf("말해주세요") >= 0) {
+                // 있다면
+                speakMenu(service.substring(service.indexOf("말해주세요")+5));
+            } else {
+                // 없다면
+                speakMenu(service);
+            }
             speakMenu(matches.toString());
 
             // STT data to TTS
