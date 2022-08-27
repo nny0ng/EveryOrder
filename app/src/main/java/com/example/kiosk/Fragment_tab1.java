@@ -19,7 +19,7 @@ public class Fragment_tab1 extends Fragment {
     private Adapter_recycler_menu adapter;
 
     public static List<String> listname = Arrays.asList("돈가스", "치즈돈가스", "로제돈가스", "고구마치즈돈가스");
-
+    public static List<String> listprice = Arrays.asList("6900원", "7900원", "9900원", "8900원");
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,8 +36,7 @@ public class Fragment_tab1 extends Fragment {
     }
 
     // 돈가스
-    private void getData() {
-        List<String> listprice = Arrays.asList("6900원", "7900원", "9900원", "8900원");
+    private void getData(){
         List<Integer> listResId = Arrays.asList(
                 R.drawable.pork,
                 R.drawable.cheesepork,

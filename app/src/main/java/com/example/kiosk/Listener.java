@@ -1,5 +1,6 @@
 package com.example.kiosk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.SpeechRecognizer;
@@ -9,8 +10,12 @@ import android.util.Log;
 public abstract class Listener implements RecognitionListener {
 
     public static String tmp = "";
+    private Intent sttIntent;
+    private SpeechRecognizer mRecognizer;
 
-    public Listener(){
+    public Listener(Intent intent, SpeechRecognizer recognizer){
+        sttIntent = intent;
+        mRecognizer = recognizer;
         tmp = "";
     }
 
@@ -74,7 +79,7 @@ public abstract class Listener implements RecognitionListener {
                 break;
             case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
                 message = "RECOGNIZER가 바쁨";
-                break;
+                return;
             case SpeechRecognizer.ERROR_SERVER:
                 message = "서버가 이상함";
                 break;
@@ -86,5 +91,6 @@ public abstract class Listener implements RecognitionListener {
                 break;
         }
         Log.d("listener message", String.valueOf(message));
+        mRecognizer.startListening(sttIntent);
     }
 }

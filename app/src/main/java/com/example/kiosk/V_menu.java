@@ -22,6 +22,13 @@ public class V_menu extends Service {
     SpeechRecognizer mRecognizer;
 
     public V_menu() {
+        // STT 설정
+        sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
+        sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
+
+        mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_menu.this);
+        mRecognizer.setRecognitionListener(listener);
     }
 
     @Override
@@ -40,13 +47,7 @@ public class V_menu extends Service {
 //            e.printStackTrace();
 //        }
 
-        // STT 설정
-        sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
-        sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
-        mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_menu.this);
-        mRecognizer.setRecognitionListener(listener);
 
         // STT 시작
         mRecognizer.startListening(sttIntent);
@@ -71,7 +72,7 @@ public class V_menu extends Service {
     }
 
     // listener: label 2
-    private Listener listener = new Listener(){
+    private Listener listener = new Listener(sttIntent, mRecognizer){
         @Override
         public void onReadyForSpeech(Bundle params) {
             super.onReadyForSpeech(params);
@@ -112,7 +113,7 @@ public class V_menu extends Service {
                 stopSelf();
             }
             else if (matches.contains("리조또")) {
-                tts.speak("리조또 메뉴들", TextToSpeech.QUEUE_FLUSH, null);
+                SpeakManager.speak("리조또 메뉴들", TextToSpeech.QUEUE_FLUSH);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
@@ -120,7 +121,7 @@ public class V_menu extends Service {
                 stopSelf();
             }
             else if (matches.contains("파스타")) {
-                tts.speak("파스타 메뉴들", TextToSpeech.QUEUE_FLUSH, null);
+                SpeakManager.speak("파스타 메뉴들", TextToSpeech.QUEUE_FLUSH);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
@@ -128,7 +129,7 @@ public class V_menu extends Service {
                 stopSelf();
             }
             else if (matches.contains("음료")) {
-                tts.speak("음료들", TextToSpeech.QUEUE_FLUSH, null);
+                SpeakManager.speak("음료들", TextToSpeech.QUEUE_FLUSH);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");

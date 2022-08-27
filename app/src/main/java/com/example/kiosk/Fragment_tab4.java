@@ -17,6 +17,7 @@ import java.util.List;
 public class Fragment_tab4 extends Fragment {
 
     public static List<String> listname = Arrays.asList("사이다", "콜라", "자몽에이드");
+    public static List<String> listprice = Arrays.asList("2000원", "2000원", "4000원");
     private Adapter_recycler_menu adapter;
 
     @Nullable
@@ -36,7 +37,6 @@ public class Fragment_tab4 extends Fragment {
 
     // 음료
     private void getData() {
-        List<String> listprice = Arrays.asList("2000원", "2000원", "4000원");
         List<Integer> listResId = Arrays.asList(
                 R.drawable.cider,
                 R.drawable.cola,

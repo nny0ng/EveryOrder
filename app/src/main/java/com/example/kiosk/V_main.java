@@ -31,6 +31,12 @@ public class V_main extends Service {
     public boolean done = false;
 
     public V_main() {
+        sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
+        sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
+
+        mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_main.this);
+        mRecognizer.setRecognitionListener(listener);
     }
 
     @Override
@@ -43,12 +49,7 @@ public class V_main extends Service {
         // tts: label 1
         SpeakManager.speak("해당 프로그램은 터치+음성입니다. 터치하면 메뉴가 추가되니 주의해주세요 ,,,메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
 
-        sttIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
-        sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
-        mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_main.this);
-        mRecognizer.setRecognitionListener(listener);
         mRecognizer.startListening(sttIntent);
 
         return super.onStartCommand(intent, flags, startId);
@@ -66,7 +67,7 @@ public class V_main extends Service {
     }
 
     // listener: label 1
-    private Listener listener = new Listener() {
+    private Listener listener = new Listener(sttIntent, mRecognizer) {
         @Override
         public void onResults(Bundle results) {
             String service;
@@ -80,46 +81,6 @@ public class V_main extends Service {
                 // 없다면
                 changeService(service);
             }
-        }
-
-        @Override
-        public void onError(int error) {
-            // 네트워크 또는 인식 오류가 발생했을 때 호출
-            String message;
-            switch (error) {
-                case SpeechRecognizer.ERROR_AUDIO:
-                    message = "오디오 에러";
-                    break;
-                case SpeechRecognizer.ERROR_CLIENT:
-                    message = "클라이언트 에러";
-                    break;
-                case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
-                    message = "퍼미션 없음";
-                    break;
-                case SpeechRecognizer.ERROR_NETWORK:
-                    message = "네트워크 에러";
-                    break;
-                case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
-                    message = "네트웍 타임아웃";
-                    break;
-                case SpeechRecognizer.ERROR_NO_MATCH:
-                    message = "찾을 수 없음";
-                    break;
-                case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
-                    message = "RECOGNIZER가 바쁨";
-                    return;
-                case SpeechRecognizer.ERROR_SERVER:
-                    message = "서버가 이상함";
-                    break;
-                case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-                    message = "말하는 시간초과";
-                    break;
-                default:
-                    message = "알 수 없는 오류임";
-                    break;
-            }
-            Log.d("listener message", String.valueOf(message));
-            mRecognizer.startListening(sttIntent);
         }
 
         public void changeService(String matches) {
