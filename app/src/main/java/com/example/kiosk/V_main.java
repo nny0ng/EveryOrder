@@ -35,8 +35,8 @@ public class V_main extends Service {
         sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,getPackageName());
         sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,"ko-KR");
 
-        mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_main.this);
-        mRecognizer.setRecognitionListener(listener);
+//        mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_main.this);
+//        mRecognizer.setRecognitionListener(listener);
     }
 
     @Override
@@ -49,7 +49,8 @@ public class V_main extends Service {
         // tts: label 1
         SpeakManager.speak("해당 프로그램은 터치+음성입니다. 터치하면 메뉴가 추가되니 주의해주세요 ,,,메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
 
-
+        mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_main.this);
+        mRecognizer.setRecognitionListener(listener);
         mRecognizer.startListening(sttIntent);
 
         return super.onStartCommand(intent, flags, startId);
@@ -85,7 +86,7 @@ public class V_main extends Service {
 
         public void changeService(String matches) {
             Intent intent;
-            if (matches.contains("메뉴")) {
+            if (matches.contains("메뉴뉴")) {
                 Log.d("change service menu", String.valueOf(matches));
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
