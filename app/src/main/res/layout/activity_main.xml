@@ -27,12 +27,12 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.75"
                 android:text="EveryOrder |"
-                android:textSize="40dp"
+                android:textSize="30dp"
                 android:textColor="@color/black"
-                android:gravity="bottom|right"
-                android:fontFamily="@font/nanumbarungothicLight"/>
+                android:gravity="center|right"
+                android:fontFamily="@font/nanumbarungothiclight"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -42,13 +42,13 @@
                 android:textSize="55dp"
                 android:textColor="@color/word"
                 android:fontFamily="@font/cafe"
-                android:layout_marginLeft="20dp"
-                android:gravity="bottom"/>
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"/>
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1.6"/>
+                android:layout_weight="1.9"/>
 
             <Button
                 android:id="@+id/btn_call"
