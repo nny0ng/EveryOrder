@@ -29,10 +29,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="EveryOrder |"
-                android:textSize="40dp"
+                android:textSize="25dp"
                 android:textColor="@color/black"
                 android:gravity="bottom|right"
-                android:fontFamily="@font/nanumbarungothicLight"/>
+                android:fontFamily="@font/nanumbarungothiclight"/>
 
             <TextView
                 android:layout_width="0dp"
