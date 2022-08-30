@@ -299,5 +299,9 @@ public class V_order extends Service {
                 mRecognizer.startListening(sttIntent);
             }
         }
+        @Override
+        public void onError(int error) {
+            mRecognizer.startListening(sttIntent);
+        }
     };
 }

@@ -84,6 +84,11 @@ public class V_main extends Service {
             }
         }
 
+        @Override
+        public void onError(int error) {
+            mRecognizer.startListening(sttIntent);
+        }
+
         public void changeService(String matches) {
             Intent intent;
             if (matches.contains("메뉴뉴")) {
