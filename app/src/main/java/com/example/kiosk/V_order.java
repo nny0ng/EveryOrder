@@ -23,7 +23,6 @@ public class V_order extends Service {
     // checkListener: ~ n개를 장바구니에 추가할까요?
     // completeListener: (장바구니 전체)를 주문하시겠습니까?
     private ArrayList<ShoppingItem> shoppinglist;
-    public TextToSpeech tts;
     Intent sttIntent;
     SpeechRecognizer mRecognizer;
 
@@ -75,12 +74,6 @@ public class V_order extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // TTS 객체가 남아있다면 실행을 중지하고 메모리에서 제거
-        if (tts != null) {
-            tts.stop();
-            tts.shutdown();
-            tts = null;
-        }
     }
 
     @Override
@@ -89,7 +82,7 @@ public class V_order extends Service {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    private Listener listener = new Listener(sttIntent, mRecognizer) {
+    private Listener listener = new Listener() {
         @Override
         public void onReadyForSpeech(Bundle params) {
             super.onReadyForSpeech(params);
@@ -150,9 +143,15 @@ public class V_order extends Service {
                 stopSelf();
             }
         }
+
+        @Override
+        public void onError(int error) {
+            Log.d("listener message", String.valueOf(error));
+            mRecognizer.startListening(sttIntent);
+        }
     };
 
-    private Listener cartListener = new Listener(sttIntent, mRecognizer){
+    private Listener cartListener = new Listener(){
         @Override
         public void onReadyForSpeech(Bundle params) {
             super.onReadyForSpeech(params);
@@ -218,9 +217,15 @@ public class V_order extends Service {
             SpeakManager.speak("를 장바구니에 "+ tmp +"할까요?", TextToSpeech.QUEUE_ADD);
             mRecognizer.startListening(sttIntent);
         }
+
+        @Override
+        public void onError(int error) {
+            Log.d("listener message", String.valueOf(error));
+            mRecognizer.startListening(sttIntent);
+        }
     };
 
-    private Listener checkListener = new Listener(sttIntent, mRecognizer) {
+    private Listener checkListener = new Listener() {
         @Override
         public void onResults(Bundle results) {
             Intent intent;
@@ -271,9 +276,15 @@ public class V_order extends Service {
             // STT data to TTS
             //tts.speak(matches.toString(), TextToSpeech.QUEUE_FLUSH, null);
         }
+
+        @Override
+        public void onError(int error) {
+            Log.d("listener message", String.valueOf(error));
+            mRecognizer.startListening(sttIntent);
+        }
     };
 
-    private Listener completeListener = new Listener(sttIntent, mRecognizer) {
+    private Listener completeListener = new Listener() {
         @Override
         public void onResults(Bundle results) {
             Intent intent;
@@ -295,9 +306,15 @@ public class V_order extends Service {
                 stopSelf();
             }
             else {
-                tts.speak("인식에 실패했습니다", TextToSpeech.QUEUE_FLUSH, null);
+                SpeakManager.speak("인식에 실패했습니다", TextToSpeech.QUEUE_FLUSH);
                 mRecognizer.startListening(sttIntent);
             }
+        }
+
+        @Override
+        public void onError(int error) {
+            Log.d("listener message", String.valueOf(error));
+            mRecognizer.startListening(sttIntent);
         }
     };
 }

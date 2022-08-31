@@ -68,7 +68,7 @@ public class V_main extends Service {
     }
 
     // listener: label 1
-    private Listener listener = new Listener(sttIntent, mRecognizer) {
+    private Listener listener = new Listener() {
         @Override
         public void onResults(Bundle results) {
             String service;
@@ -112,6 +112,12 @@ public class V_main extends Service {
                 // 무한 반복
                 mRecognizer.startListening(sttIntent);
             }
+        }
+
+        @Override
+        public void onError(int error) {
+            Log.d("listener message", String.valueOf(error));
+            mRecognizer.startListening(sttIntent);
         }
     };
 }

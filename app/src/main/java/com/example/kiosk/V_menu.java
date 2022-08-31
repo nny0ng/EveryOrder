@@ -72,7 +72,7 @@ public class V_menu extends Service {
     }
 
     // listener: label 2
-    private Listener listener = new Listener(sttIntent, mRecognizer){
+    private Listener listener = new Listener(){
         @Override
         public void onReadyForSpeech(Bundle params) {
             super.onReadyForSpeech(params);
@@ -157,6 +157,12 @@ public class V_menu extends Service {
                 startActivity(intent);
                 stopSelf();
             }
+        }
+
+        @Override
+        public void onError(int error) {
+            Log.d("listener message", String.valueOf(error));
+            mRecognizer.startListening(sttIntent);
         }
     };
 

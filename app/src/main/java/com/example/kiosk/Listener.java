@@ -10,12 +10,8 @@ import android.util.Log;
 public abstract class Listener implements RecognitionListener {
 
     public static String tmp = "";
-    private Intent sttIntent;
-    private SpeechRecognizer mRecognizer;
 
-    public Listener(Intent intent, SpeechRecognizer recognizer){
-        sttIntent = intent;
-        mRecognizer = recognizer;
+    public Listener(){
         tmp = "";
     }
 
@@ -54,43 +50,4 @@ public abstract class Listener implements RecognitionListener {
         // 말하기를 중지하면 호출
     }
 
-    @Override
-    public void onError(int error) {
-        // 네트워크 또는 인식 오류가 발생했을 때 호출
-        String message;
-        switch (error) {
-            case SpeechRecognizer.ERROR_AUDIO:
-                message = "오디오 에러";
-                break;
-            case SpeechRecognizer.ERROR_CLIENT:
-                message = "클라이언트 에러";
-                break;
-            case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
-                message = "퍼미션 없음";
-                break;
-            case SpeechRecognizer.ERROR_NETWORK:
-                message = "네트워크 에러";
-                break;
-            case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
-                message = "네트웍 타임아웃";
-                break;
-            case SpeechRecognizer.ERROR_NO_MATCH:
-                message = "찾을 수 없음";
-                break;
-            case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
-                message = "RECOGNIZER가 바쁨";
-                return;
-            case SpeechRecognizer.ERROR_SERVER:
-                message = "서버가 이상함";
-                break;
-            case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-                message = "말하는 시간초과";
-                break;
-            default:
-                message = "알 수 없는 오류임";
-                break;
-        }
-        Log.d("listener message", String.valueOf(message));
-        mRecognizer.startListening(sttIntent);
-    }
 }
