@@ -7,6 +7,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -28,6 +29,7 @@ public class Start extends AppCompatActivity {
         // TTS 연결
         SpeakManager.setup(this);
 
+        SpeakManager.speak("시작하려면 화면을 터치해주세요.", TextToSpeech.QUEUE_FLUSH);
         LinearLayout layout_start = (LinearLayout)findViewById(R.id.layout_start);
         layout_start.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction = fragmentManager.beginTransaction();
         if (intent != null) {
             String Service = intent.getStringExtra("Service");
+            Log.d("INTENT", Service);
             Log.d("main activity intent", String.valueOf(Service));
             if (Service.equals("MAIN")) {
                 serviceIntent = new Intent(getApplicationContext(), V_main.class);
@@ -86,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
             else if (Service.equals("FINAL")){
                 fragmentTransaction.replace(R.id.layout_frame, fragment_order).commitAllowingStateLoss();
             }
+            else if (Service.equals("COMPLETE")){
+                serviceIntent = new Intent(getApplicationContext(), PopupFinish.class);
+                Adapter_recycler_shopping.ShoppingList.clear();
+                startActivity(serviceIntent);
+            }
+
         }
 
     }

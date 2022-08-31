@@ -193,7 +193,8 @@ public class V_menu extends Service {
         }
 
         @Override
-        public void onError(int error) {String message;
+        public void onError(int error) {
+            String message;
             switch (error) {
                 case SpeechRecognizer.ERROR_AUDIO:
                     message = "오디오 에러";
