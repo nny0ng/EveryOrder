@@ -72,6 +72,7 @@ public class V_main extends Service {
         @Override
         public void onResults(Bundle results) {
             String service;
+
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
             Log.d("main STT", String.valueOf(matches));
             service = matches.toString().replaceAll(" ", "");
@@ -86,15 +87,26 @@ public class V_main extends Service {
 
         public void changeService(String matches) {
             Intent intent;
-            if (matches.contains("메뉴뉴")) {
+            if (matches.contains("어이")) {
+                if(mRecognizer!=null){
+                    mRecognizer.destroy();
+                    mRecognizer.cancel();
+                    mRecognizer = null;
+                }
                 Log.d("change service menu", String.valueOf(matches));
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
+                intent.putExtra("FROM", "MAIN");
                 startActivity(intent);
                 stopSelf();
             }
             else if (matches.contains("주문")) {
+                if(mRecognizer!=null){
+                    mRecognizer.destroy();
+                    mRecognizer.cancel();
+                    mRecognizer = null;
+                }
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "ORDER");
@@ -102,6 +114,11 @@ public class V_main extends Service {
                 stopSelf();
             }
             else if (matches.contains("호출")) {
+                if(mRecognizer!=null){
+                    mRecognizer.destroy();
+                    mRecognizer.cancel();
+                    mRecognizer = null;
+                }
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "CALL");
@@ -116,7 +133,40 @@ public class V_main extends Service {
 
         @Override
         public void onError(int error) {
-            Log.d("listener message", String.valueOf(error));
+            String message;
+            switch (error) {
+                case SpeechRecognizer.ERROR_AUDIO:
+                    message = "오디오 에러";
+                    break;
+                case SpeechRecognizer.ERROR_CLIENT:
+                    message = "클라이언트 에러";
+                    break;
+                case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
+                    message = "퍼미션 없음";
+                    break;
+                case SpeechRecognizer.ERROR_NETWORK:
+                    message = "네트워크 에러";
+                    break;
+                case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
+                    message = "네트웍 타임아웃";
+                    break;
+                case SpeechRecognizer.ERROR_NO_MATCH:
+                    message = "찾을 수 없음";
+                    break;
+                case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
+                    message = "RECOGNIZER가 바쁨";
+                    return;
+                case SpeechRecognizer.ERROR_SERVER:
+                    message = "서버가 이상함";
+                    break;
+                case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
+                    message = "말하는 시간초과";
+                    break;
+                default:
+                    message = "알 수 없는 오류임";
+                    break;
+            }
+            Log.d("listener message", String.valueOf(message));
             mRecognizer.startListening(sttIntent);
         }
     };

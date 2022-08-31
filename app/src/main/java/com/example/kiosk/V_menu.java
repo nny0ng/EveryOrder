@@ -39,8 +39,10 @@ public class V_menu extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // tts: label 2
-        SpeakManager.speak("돈가스, 리조또, 파스타, 음료 중 원하는 분류를 선택하세요. 주문을 원하시면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
-
+        if(intent.getStringExtra("FROM").equals("MAIN"))
+            SpeakManager.speak("돈가스, 리조또, 파스타, 음료 중 원하는 분류를 선택하세요. 주문을 원하시면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
+        else
+            SpeakManager.speak("돈가스, 리조또, 파스타, 음료 중 원하는 분류를 선택하세요. 주문을 원하시면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_ADD);
 //        try {
 //            Thread.sleep(9500);
 //        } catch (InterruptedException e) {
@@ -86,8 +88,9 @@ public class V_menu extends Service {
         @Override
         public void onResults(Bundle results) {
             String service;
+            mRecognizer.stopListening();
             ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-            Log.d("STT", String.valueOf(matches));
+            Log.d("menuSTT", String.valueOf(matches));
             service = matches.toString().replaceAll(" ", "");
             if (service.lastIndexOf("말해주세요") >= 0) {
                 // 있다면
@@ -106,9 +109,11 @@ public class V_menu extends Service {
             Intent intent;
             if (matches.contains("돈가스") || matches.contains("돈까스")) {
                 SpeakManager.speak("돈가스 메뉴들", TextToSpeech.QUEUE_FLUSH);
+                SpeakManager.returnObject().playSilence(2000, TextToSpeech.QUEUE_ADD, null);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
+                intent.putExtra("FROM", "MENU");
                 startActivity(intent);
                 stopSelf();
             }
@@ -117,6 +122,7 @@ public class V_menu extends Service {
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
+                intent.putExtra("FROM", "MENU");
                 startActivity(intent);
                 stopSelf();
             }
@@ -133,6 +139,7 @@ public class V_menu extends Service {
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
+                intent.putExtra("FROM", "MENU");
                 startActivity(intent);
                 stopSelf();
             }
@@ -154,14 +161,47 @@ public class V_menu extends Service {
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
+                intent.putExtra("FROM", "MENU");
                 startActivity(intent);
                 stopSelf();
             }
         }
 
         @Override
-        public void onError(int error) {
-            Log.d("listener message", String.valueOf(error));
+        public void onError(int error) {String message;
+            switch (error) {
+                case SpeechRecognizer.ERROR_AUDIO:
+                    message = "오디오 에러";
+                    break;
+                case SpeechRecognizer.ERROR_CLIENT:
+                    message = "클라이언트 에러";
+                    break;
+                case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
+                    message = "퍼미션 없음";
+                    break;
+                case SpeechRecognizer.ERROR_NETWORK:
+                    message = "네트워크 에러";
+                    break;
+                case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
+                    message = "네트웍 타임아웃";
+                    break;
+                case SpeechRecognizer.ERROR_NO_MATCH:
+                    message = "찾을 수 없음";
+                    break;
+                case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
+                    message = "RECOGNIZER가 바쁨";
+                    return;
+                case SpeechRecognizer.ERROR_SERVER:
+                    message = "서버가 이상함";
+                    break;
+                case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
+                    message = "말하는 시간초과";
+                    break;
+                default:
+                    message = "알 수 없는 오류임";
+                    break;
+            }
+            Log.d("listener message", String.valueOf(message));
             mRecognizer.startListening(sttIntent);
         }
     };

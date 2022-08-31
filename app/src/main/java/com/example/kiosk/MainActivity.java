@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             else if (Service.equals("MENU")) {
                 fragmentTransaction.replace(R.id.layout_frame, fragment_menu).commitAllowingStateLoss();
                 serviceIntent  = new Intent(getApplicationContext(), V_menu.class);
+                serviceIntent.putExtra("FROM", intent.getStringExtra("FROM"));
                 startService(serviceIntent);
             }
             else if (Service.equals("ORDER")) {
