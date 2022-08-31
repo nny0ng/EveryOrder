@@ -47,7 +47,7 @@ public class V_main extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // tts: label 1
-        SpeakManager.speak("해당 프로그램은 터치+음성입니다. 터치하면 메뉴가 추가되니 주의해주세요 ,,,메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
+        SpeakManager.speak("해당 프로그램은 터치+음성입니다. 터치하면 메뉴가 추가되니 주의해주세요 ,,,메뉴를 듣고싶으시면 메뉴, 주문을 하려면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_ADD);
 
         mRecognizer = SpeechRecognizer.createSpeechRecognizer(V_main.this);
         mRecognizer.setRecognitionListener(listener);
@@ -119,9 +119,11 @@ public class V_main extends Service {
                     mRecognizer.cancel();
                     mRecognizer = null;
                 }
+                SpeakManager.speak("직원을 호출했습니다. 잠시만 기다려주세요!", TextToSpeech.QUEUE_FLUSH);
+                SpeakManager.returnObject().playSilence(2000, TextToSpeech.QUEUE_ADD, null);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Service", "CALL");
+                intent.putExtra("Service", "MAIN");
                 startActivity(intent);
                 stopSelf();
             }

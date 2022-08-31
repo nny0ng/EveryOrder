@@ -43,13 +43,12 @@ public class V_menu extends Service {
             SpeakManager.speak("돈가스, 리조또, 파스타, 음료 중 원하는 분류를 선택하세요. 주문을 원하시면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_FLUSH);
         else
             SpeakManager.speak("돈가스, 리조또, 파스타, 음료 중 원하는 분류를 선택하세요. 주문을 원하시면 주문, 직원 호출을 원하시면 호출 이라고 말해주세요", TextToSpeech.QUEUE_ADD);
-//        try {
-//            Thread.sleep(9500);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
 
-
+        try {
+            Thread.sleep(10500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // STT 시작
         mRecognizer.startListening(sttIntent);
@@ -75,15 +74,15 @@ public class V_menu extends Service {
 
     // listener: label 2
     private Listener listener = new Listener(){
-        @Override
-        public void onReadyForSpeech(Bundle params) {
-            super.onReadyForSpeech(params);
-            try {
-                Thread.sleep(9500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+//        @Override
+//        public void onReadyForSpeech(Bundle params) {
+//            super.onReadyForSpeech(params);
+//            try {
+//                Thread.sleep(10500);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         @Override
         public void onResults(Bundle results) {
@@ -99,7 +98,7 @@ public class V_menu extends Service {
                 // 없다면
                 speakMenu(service);
             }
-            speakMenu(matches.toString());
+            //speakMenu(matches.toString());
 
             // STT data to TTS
             //tts.speak(matches.toString(), TextToSpeech.QUEUE_FLUSH, null);
@@ -107,8 +106,17 @@ public class V_menu extends Service {
 
         public void speakMenu (String matches) {
             Intent intent;
+            if(mRecognizer!=null){
+                mRecognizer.destroy();
+                mRecognizer.cancel();
+                mRecognizer = null;
+            }
             if (matches.contains("돈가스") || matches.contains("돈까스")) {
-                SpeakManager.speak("돈가스 메뉴들", TextToSpeech.QUEUE_FLUSH);
+                SpeakManager.speak("돈까스에는 ",TextToSpeech.QUEUE_FLUSH);
+                for(int i=0; i<Fragment_tab1.listname.size(); i++){
+                    SpeakManager.speak(Fragment_tab1.listname.get(i).replace("가","까")+',',TextToSpeech.QUEUE_ADD);
+                }
+                SpeakManager.speak("가 있습니다",TextToSpeech.QUEUE_ADD);
                 SpeakManager.returnObject().playSilence(2000, TextToSpeech.QUEUE_ADD, null);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -118,7 +126,12 @@ public class V_menu extends Service {
                 stopSelf();
             }
             else if (matches.contains("리조또")) {
-                SpeakManager.speak("리조또 메뉴들", TextToSpeech.QUEUE_FLUSH);
+                SpeakManager.speak("리조또에는 ",TextToSpeech.QUEUE_FLUSH);
+                for(int i=0; i<Fragment_tab1.listname.size(); i++){
+                    SpeakManager.speak(Fragment_tab2.listname.get(i)+',',TextToSpeech.QUEUE_ADD);
+                }
+                SpeakManager.speak("가 있습니다",TextToSpeech.QUEUE_ADD);
+                SpeakManager.returnObject().playSilence(2000, TextToSpeech.QUEUE_ADD, null);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
@@ -127,7 +140,12 @@ public class V_menu extends Service {
                 stopSelf();
             }
             else if (matches.contains("파스타")) {
-                SpeakManager.speak("파스타 메뉴들", TextToSpeech.QUEUE_FLUSH);
+                SpeakManager.speak("파스타에는 ",TextToSpeech.QUEUE_FLUSH);
+                for(int i=0; i<Fragment_tab1.listname.size(); i++){
+                    SpeakManager.speak(Fragment_tab3.listname.get(i)+',',TextToSpeech.QUEUE_ADD);
+                }
+                SpeakManager.speak("가 있습니다",TextToSpeech.QUEUE_ADD);
+                SpeakManager.returnObject().playSilence(2000, TextToSpeech.QUEUE_ADD, null);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
@@ -135,7 +153,12 @@ public class V_menu extends Service {
                 stopSelf();
             }
             else if (matches.contains("음료")) {
-                SpeakManager.speak("음료들", TextToSpeech.QUEUE_FLUSH);
+                SpeakManager.speak("음료에는 ",TextToSpeech.QUEUE_FLUSH);
+                for(int i=0; i<Fragment_tab1.listname.size(); i++){
+                    SpeakManager.speak(Fragment_tab4.listname.get(i)+',',TextToSpeech.QUEUE_ADD);
+                }
+                SpeakManager.speak("가 있습니다",TextToSpeech.QUEUE_ADD);
+                SpeakManager.returnObject().playSilence(2000, TextToSpeech.QUEUE_ADD, null);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("Service", "MENU");
@@ -151,9 +174,11 @@ public class V_menu extends Service {
                 stopSelf();
             }
             else if (matches.contains("호출")) {
+                SpeakManager.speak("직원을 호출했습니다. 잠시만 기다려주세요!", TextToSpeech.QUEUE_FLUSH);
+                SpeakManager.returnObject().playSilence(2000, TextToSpeech.QUEUE_ADD, null);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("Service", "CALL");
+                intent.putExtra("Service", "MAIN");
                 startActivity(intent);
                 stopSelf();
             }

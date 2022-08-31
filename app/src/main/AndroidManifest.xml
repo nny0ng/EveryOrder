@@ -13,10 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kiosk">
         <service
-            android:name=".V_call"
-            android:enabled="true"
-            android:exported="true"></service>
-        <service
             android:name=".V_order"
             android:enabled="true"
             android:exported="true" />

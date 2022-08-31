@@ -83,11 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 serviceIntent  = new Intent(getApplicationContext(), V_order.class);
                 startService(serviceIntent);
             }
-            else if (Service.equals("CALL")) {
-                //startActivity(new Intent(getApplicationContext(), PopupCall.class));
-                serviceIntent  = new Intent(getApplicationContext(), V_call.class);
-                startService(serviceIntent);
-            }
             else if (Service.equals("FINAL")){
                 fragmentTransaction.replace(R.id.layout_frame, fragment_order).commitAllowingStateLoss();
             }
